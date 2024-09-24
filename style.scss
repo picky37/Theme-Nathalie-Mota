@@ -1,9 +1,35 @@
 /*
 Theme Name: Nathalie Mota
 Author: Malinowski Noé
-Author URI: https: //github.com/picky37
+Author URI: https://github.com/picky37
 Description: Thème personnalisé pour le projet 11 OpenClassrooms
 Version: 1.0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
+
+$rouge: #E00000;
+$rougeSecondaire: #FE5858;
+$rougeTertiaire: #FFD6D6;
+$noir: #000000;
+$bleuFonce: #313144;
+$grisFonce: #C4C4C4;
+$grisMedium: #D8D8D8;
+$grisLight: #E5E5E5;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.my-header{
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+}
+
+body{
+    background-color: rgb(173, 152, 152);
+}
