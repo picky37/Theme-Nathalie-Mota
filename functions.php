@@ -12,8 +12,7 @@
  * Register block styles.
  */
 
- function my_nathalie_mota_enqueue_scripts() {
-    // Enqueue le fichier custom.js avec jQuery comme dépendance
-    wp_enqueue_script( 'my-first-custom-script', get_template_directory_uri() . '/js/script_nathalie_mota.js', array('jquery'), '1.0.0', true );
+function enregistrer_script_nathalie_mota() {
+    wp_register_script( 'script_nathalie_mota', get_stylesheet_directory_uri() . '/js/script_nathalie_mota.js', '1.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'my_nathalie_mota_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'enregistrer_script_nathalie_mota' );
