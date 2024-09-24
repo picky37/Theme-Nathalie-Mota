@@ -17,6 +17,11 @@ function enregistrer_script_nathalie_mota() {
 }
 add_action( 'wp_enqueue_scripts', 'enregistrer_script_nathalie_mota' );
 
+function enregistrer_style_nathalie_mota() {
+    wp_enqueue_style( 'style_nathalie_mota', get_stylesheet_uri() );
+}
+add_action( 'wp_enqueue_scripts', 'enregistrer_style_nathalie_mota' );
+
 // Register a new sidebar simply named 'sidebar'
 function add_widget_Support() {
                 register_sidebar( array(

@@ -16,3 +16,8 @@ Text Domain: Theme-Nathalie-Mota
 * {
     box-sizing: border-box;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #b3a4a4;
+}
