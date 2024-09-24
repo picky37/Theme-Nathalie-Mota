@@ -8,6 +8,40 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
+@font-face {
+    font-family: 'SpaceMono-BoldItalic';
+    src: url('fonts/Space Mono/SpaceMono-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SpaceMono400italic';
+    src: url('fonts/Space Mono/SpaceMono-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SpaceMono400';
+    src: url('fonts/Space Mono/SpaceMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins300';
+    src: url('fonts/Poppins/Poppins-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+$font-family-h1: 'SpaceMono-BoldItalic';
+$font-family-h2: 'SpaceMono400italic';
+$font-family-h3: 'SpaceMono400';
+$font-family-description: 'SpaceMono400';
+$font-family-p: 'Poppins300';
+
 $rouge: #E00000;
 $rougeSecondaire: #FE5858;
 $rougeTertiaire: #FFD6D6;
@@ -16,6 +50,8 @@ $bleuFonce: #313144;
 $grisFonce: #C4C4C4;
 $grisMedium: #D8D8D8;
 $grisLight: #E5E5E5;
+
+
 
 * {
     margin: 0;
@@ -32,4 +68,8 @@ $grisLight: #E5E5E5;
 
 body{
     background-color: rgb(173, 152, 152);
+}
+
+.h1{
+ font-family: $font-family-h1;
 }
