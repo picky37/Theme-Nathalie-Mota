@@ -1,7 +1,6 @@
-<!-- Test footer -->
-<p>Test du footer</p>
-
-
-<script>
-console.log("Test inline script");
-</script>
+<footer>
+      <p>Copyright &copy; 2017</p>
+    </footer>
+    <?php wp_footer(); ?>
+  </body>
+</html>
