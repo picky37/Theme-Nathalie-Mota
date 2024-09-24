@@ -13,7 +13,7 @@
  */
 
 function enregistrer_script_nathalie_mota() {
-    wp_register_script( 'script_nathalie_mota', get_stylesheet_directory_uri() . '/js/script_nathalie_mota.js', '1.0', true );
+    wp_enqueue_script('script_nathalie_mota', get_theme_file_uri('/js/script_nathalie_mota.js'), [], null, true);
 }
 add_action( 'wp_enqueue_scripts', 'enregistrer_script_nathalie_mota' );
 
