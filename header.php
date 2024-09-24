@@ -9,7 +9,7 @@
 </head>
 <body <?php body_class(); ?>>
     <header class="my-logo">
-        <h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo('name'); ?></a></h1>
+       <a href="accueil"><img src="wp-content\themes\Theme-Nathalie-Mota\images\logo_nathalie_mota.svg" alt="Logo de Nathalie Mota"></a>
     </header>
     <?php wp_nav_menu( array( 'header-menu' => 'header-menu' ) ); ?>
 </body>
