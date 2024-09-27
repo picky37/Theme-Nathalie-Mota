@@ -9,8 +9,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
 @font-face {
-    font-family: 'SpaceMono-BoldItalic';
-    src: url('fonts/Space Mono/SpaceMono-BoldItalic.woff2') format('woff2');
+    font-family: 'Space Mono';
+    src: url('./fonts/Space Mono/SpaceMono-BoldItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -34,7 +34,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
     font-style: normal;
 }
 
-$font-family-h1: 'SpaceMono-BoldItalic';
+$font-family-h1: 'Space Mono';
 $font-family-h2: 'SpaceMono400italic';
 $font-family-h3: 'SpaceMono400';
 $font-family-description: 'SpaceMono400';
@@ -65,9 +65,11 @@ $grisLight: #E5E5E5;
 }
 
 body{
-    background-color: rgb(192, 45, 45);
+    background-color: rgb(236, 236, 236);
 }
 
-.h1{
- font-family: $font-family-h1;
+h1 {
+    font-family: $font-family-h1, monospace;
+    font-weight: 700;
+    font-style: italic;
 }

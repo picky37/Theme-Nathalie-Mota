@@ -9,8 +9,8 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 @font-face {
-  font-family: "SpaceMono-BoldItalic";
-  src: url("fonts/Space Mono/SpaceMono-BoldItalic.woff2") format("woff2");
+  font-family: "Space Mono";
+  src: url("./fonts/Space Mono/SpaceMono-BoldItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "SpaceMono400italic";
@@ -44,9 +44,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 }
 
 body {
-  background-color: rgb(192, 45, 45);
+  background-color: rgb(236, 236, 236);
 }
 
-.h1 {
-  font-family: "SpaceMono-BoldItalic";
+h1 {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
 }/*# sourceMappingURL=style.css.map */
