@@ -70,6 +70,10 @@ body {
   background-color: rgb(236, 236, 236);
 }
 
+.img_logo {
+  height: 9px;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.724rem;
