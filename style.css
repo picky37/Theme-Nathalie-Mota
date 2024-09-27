@@ -74,6 +74,12 @@ body {
   height: 9px;
 }
 
+footer {
+  height: 208px;
+  background-color: white;
+  border-top: solid black 2px;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.724rem;
