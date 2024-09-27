@@ -9,27 +9,41 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 @font-face {
-  font-family: "Space Mono";
+  font-family: "SpaceMonoBoldItalic";
   src: url("./fonts/Space Mono/SpaceMono-BoldItalic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "SpaceMono400italic";
-  src: url("fonts/Space Mono/SpaceMono-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
+  font-family: "SpaceMonoRegularItalic";
+  src: url("./fonts/Space Mono/SpaceMono-Italic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "SpaceMono400";
-  src: url("fonts/Space Mono/SpaceMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
+  font-family: "SpaceMonoRegular";
+  src: url("./fonts/Space Mono/SpaceMono-Regular.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Poppins300";
-  src: url("fonts/Poppins/Poppins-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
+  font-family: "PoppinsLight";
+  src: url("./fonts/Poppins/Poppins-Light.woff2") format("woff2");
 }
+h1 {
+  font-family: "SpaceMonoBoldItalic", monospace;
+}
+
+h2 {
+  font-family: "SpaceMonoRegularItalic", monospace;
+}
+
+h3 {
+  font-family: "SpaceMonoRegular", monospace;
+}
+
+.description {
+  font-family: "SpaceMonoRegular", monospace;
+}
+
+p {
+  font-family: "PoppinsLight", monospace;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -45,10 +59,4 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 body {
   background-color: rgb(236, 236, 236);
-}
-
-h1 {
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-style: italic;
 }/*# sourceMappingURL=style.css.map */
