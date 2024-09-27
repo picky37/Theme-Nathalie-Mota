@@ -50,3 +50,5 @@ function fonts_test() {
   echo '<p class="description">DESCRIPTION PHOTO CECI EST UN SUPER TEST</p>';
   echo '<p>Paragraphe CECI EST UN SUPER TEST</p>';
 }
+
+define('THEME_URI', get_template_directory_uri());
