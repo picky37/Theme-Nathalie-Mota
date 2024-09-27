@@ -80,6 +80,10 @@ footer {
   border-top: solid black 2px;
 }
 
+.modale_container {
+  background-color: #E00000;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.724rem;
