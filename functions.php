@@ -42,3 +42,11 @@ function add_Main_Nav() {
 }
 // Hook to the init action hook, run our navigation menu function
 add_action( 'init', 'add_Main_Nav' );
+
+function fonts_test() {
+  echo '<h1>H1 CECI EST UN SUPER TEST</h1>';
+  echo '<h2>H2 CECI EST UN SUPER TEST</h2>';
+  echo '<h3>H3 CECI EST UN SUPER TEST</h3>';
+  echo '<p class="description">DESCRIPTION PHOTO CECI EST UN SUPER TEST</p>';
+  echo '<p>Paragraphe CECI EST UN SUPER TEST</p>';
+}

@@ -8,6 +8,10 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
+html{
+    font-size: 100%;
+}
+
 @font-face {
     font-family: 'SpaceMonoBoldItalic';
     src: url('./fonts/Space Mono/SpaceMono-BoldItalic.woff2') format('woff2');
@@ -34,6 +38,17 @@ $font-family-h3: 'SpaceMonoRegular';
 $font-family-description: 'SpaceMonoRegular';
 $font-family-p: 'PoppinsLight';
 
+$font-size-desktop-h1: 6rem;
+$font-size-desktop-h2: 4.125rem;
+$font-size-desktop-h3: 1.125rem;
+$font-size-desktop-description: 0.875rem;
+$font-size-desktop-p: 0.875rem;
+
+$font-size-mobile-h1: 1.724rem;
+$font-size-mobile-h2: 2.875rem;
+$font-size-mobile-h3: 1.125rem;
+$font-size-mobile-description: 0.875rem;
+$font-size-mobile-p: 0.875rem;
 
 $rouge: #E00000;
 $rougeSecondaire: #FE5858;
@@ -46,24 +61,28 @@ $grisLight: #E5E5E5;
 
 h1 {
     font-family: $font-family-h1, monospace;
+    font-size: $font-size-desktop-h1;
 }
 
 h2 {
     font-family: $font-family-h2, monospace;
+    font-size: $font-size-desktop-h2;
 }
 
 h3 {
     font-family: $font-family-h3, monospace;
+    font-size: $font-size-desktop-h3;
 }
 
 .description {
     font-family: $font-family-description, monospace;
+    font-size: $font-size-desktop-description;
 }
 
 p {
     font-family: $font-family-p, monospace;
+    font-size: $font-family-p;
 }
-
 
 
 * {
@@ -82,3 +101,21 @@ p {
 body{
     background-color: rgb(236, 236, 236);
 }
+
+@media (max-width: 768px) {
+    h1 {
+      font-size: $font-size-mobile-h1;
+    }
+    h2 {
+      font-size: $font-size-mobile-h2;
+    }
+    h3 {
+      font-size: $font-size-mobile-h3;
+    }
+    p {
+      font-size: $font-size-mobile-p;
+    }
+    .description {
+      font-size: $font-size-mobile-description;
+    }
+  }
