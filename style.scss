@@ -8,7 +8,7 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-html{
+html {
     font-size: 100%;
 }
 
@@ -90,7 +90,7 @@ p {
     padding: 0;
 }
 
-.my-header{
+.my-header {
     min-height: 72px;
     display: flex;
     align-items: center;
@@ -98,26 +98,36 @@ p {
     background-color: rgb(255, 255, 255);
 }
 
-body{
+body {
     background-color: rgb(236, 236, 236);
 }
 
-.img_logo{
+.img_logo {
     height: 9px;
 }
 
-footer{
+footer {
     height: 208px;
     background-color: white;
     border-top: solid black 2px;
 }
 
+/* Code pour le popup de contact */
 
-.modale_container{
-    background-color: #E00000;
+#modale_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 18px;
+    background-color: #fff;
+    border: 3px solid black;
+    transition: opacity 0.3s ease-in-out;
 }
 
-
+.hidden {
+    opacity: 0;
+}
 
 
 
@@ -138,18 +148,22 @@ footer{
 
 @media (max-width: 768px) {
     h1 {
-      font-size: $font-size-mobile-h1;
+        font-size: $font-size-mobile-h1;
     }
+
     h2 {
-      font-size: $font-size-mobile-h2;
+        font-size: $font-size-mobile-h2;
     }
+
     h3 {
-      font-size: $font-size-mobile-h3;
+        font-size: $font-size-mobile-h3;
     }
+
     p {
-      font-size: $font-size-mobile-p;
+        font-size: $font-size-mobile-p;
     }
+
     .description {
-      font-size: $font-size-mobile-description;
+        font-size: $font-size-mobile-description;
     }
-  }
+}

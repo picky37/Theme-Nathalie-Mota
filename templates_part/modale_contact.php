@@ -1,5 +1,9 @@
-<div class="modale_container">
+<div id="modale_container">
 
-<div class="modale_details"><h1>coucou</h1></div>
+<div class="modale_details">
+
+<img src="<?=THEME_URI?>/images/contact_header.svg" alt="Logo contact popup">
+
+</div>
     
 </div>

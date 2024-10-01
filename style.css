@@ -80,8 +80,20 @@ footer {
   border-top: solid black 2px;
 }
 
-.modale_container {
-  background-color: #E00000;
+/* Code pour le popup de contact */
+#modale_container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 18px;
+  background-color: #fff;
+  border: 3px solid black;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
