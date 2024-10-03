@@ -96,6 +96,7 @@ p {
     align-items: center;
     justify-content: space-around;
     background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 4px 0px #00000017;
 }
 
 body {
@@ -123,16 +124,59 @@ footer {
     background-color: #fff;
     border: 3px solid black;
     transition: opacity 0.3s ease-in-out;
+    width: 597px;
+    height: 769px;
 }
 
 .hidden {
     opacity: 0;
 }
 
+/* Formulaire contact du popup */
+
+#wpforms-15 {
+    display: flex;
+    justify-content: center;
+}
+
+.wpforms-field-medium {
+    border: solid 1px $grisMedium !important;
+    border-radius: 8px !important;
+}
+
+.wpforms-field-label {
+    font-family: $font-family-p;
+    font-size: $font-size-desktop-p;
+}
+
+#wpforms-15-field_5-container textarea {
+    resize: none!important;
+}
+
+.wpforms-submit-container {
+    display: flex;
+    justify-content: center;
+}
 
 
+#wpforms-submit-15 {
+    background-color: $grisMedium !important;
+    padding: 8px 15px 8px 15px;
+    gap: 10px;
+    border-radius: 2px!important;
+    width: 263px;
+    height: 50px;
+}
 
+div.wpforms-container-full button[type=submit]{
+    color: $noir!important;
+    font-family: $font-family-description!important;
+    font-size: $font-size-desktop-description!important;
+}
 
+.wpforms-container input.wpforms-field-medium{
+    max-width: 100%!important;
+}
 
 
 
