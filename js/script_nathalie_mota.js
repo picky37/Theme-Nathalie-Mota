@@ -1,14 +1,14 @@
 console.log('connecté !');
 
-const button = document.getElementById('myButton');
+
 const popup = document.getElementById('modale_container');
+console.log(popup);
 const closeButton = document.getElementById('closeButton');
+const menuLink = document.getElementById('menu-item-26');
 
 
-button.addEventListener('click', () => {
-    popup.classList.remove('hidden');
+menuLink.addEventListener('click', () => {
+    popup.classList.toggle('show');
+    console.log('close');
 });
-
-closeButton.addEventListener('click', () => {
-    popup.classList.add('hidden');
-});
+ 

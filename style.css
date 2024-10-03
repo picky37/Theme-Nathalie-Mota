@@ -92,11 +92,11 @@ footer {
   border: 3px solid black;
   transition: opacity 0.3s ease-in-out;
   width: 597px;
-  height: 769px;
+  display: none;
 }
 
-.hidden {
-  opacity: 0;
+.show {
+  display: block !important;
 }
 
 /* Formulaire contact du popup */
@@ -143,6 +143,22 @@ div.wpforms-container-full button[type=submit] {
   max-width: 100% !important;
 }
 
+/* Menu header desktop */
+.menu-menu-1-container ul {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-menu-1-container li {
+  list-style-type: none;
+}
+
+.menu-menu-1-container a {
+  text-decoration: none;
+  font-family: "SpaceMonoRegular";
+  font-size: 1.125rem;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.724rem;
@@ -158,5 +174,13 @@ div.wpforms-container-full button[type=submit] {
   }
   .description {
     font-size: 0.875rem;
+  }
+  .menu-menu-1-container {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .logo_burger {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */

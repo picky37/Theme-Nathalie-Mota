@@ -125,11 +125,11 @@ footer {
     border: 3px solid black;
     transition: opacity 0.3s ease-in-out;
     width: 597px;
-    height: 769px;
+    display: none;
 }
 
-.hidden {
-    opacity: 0;
+.show {
+    display: block !important;
 }
 
 /* Formulaire contact du popup */
@@ -150,7 +150,7 @@ footer {
 }
 
 #wpforms-15-field_5-container textarea {
-    resize: none!important;
+    resize: none !important;
 }
 
 .wpforms-submit-container {
@@ -163,29 +163,37 @@ footer {
     background-color: $grisMedium !important;
     padding: 8px 15px 8px 15px;
     gap: 10px;
-    border-radius: 2px!important;
+    border-radius: 2px !important;
     width: 263px;
     height: 50px;
 }
 
-div.wpforms-container-full button[type=submit]{
-    color: $noir!important;
-    font-family: $font-family-description!important;
-    font-size: $font-size-desktop-description!important;
+div.wpforms-container-full button[type=submit] {
+    color: $noir !important;
+    font-family: $font-family-description !important;
+    font-size: $font-size-desktop-description !important;
 }
 
-.wpforms-container input.wpforms-field-medium{
-    max-width: 100%!important;
+.wpforms-container input.wpforms-field-medium {
+    max-width: 100% !important;
 }
 
+/* Menu header desktop */
 
+.menu-menu-1-container ul {
+    display: flex;
+    gap: 20px;
+}
 
+.menu-menu-1-container li {
+    list-style-type: none;
+}
 
-
-
-
-
-
+.menu-menu-1-container a {
+    text-decoration: none;
+    font-family: $font-family-h3;
+    font-size: $font-size-desktop-h3;
+}
 
 
 
@@ -209,5 +217,15 @@ div.wpforms-container-full button[type=submit]{
 
     .description {
         font-size: $font-size-mobile-description;
+    }
+
+    .menu-menu-1-container {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .logo_burger {
+        display: none;
     }
 }
