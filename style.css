@@ -146,7 +146,7 @@ div.wpforms-container-full button[type=submit] {
 /* Menu header desktop */
 .menu-menu-1-container ul {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .menu-menu-1-container li {
@@ -154,6 +154,7 @@ div.wpforms-container-full button[type=submit] {
 }
 
 .menu-menu-1-container a {
+  color: #000000;
   text-decoration: none;
   font-family: "SpaceMonoRegular";
   font-size: 1.125rem;
