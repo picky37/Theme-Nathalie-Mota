@@ -34,6 +34,7 @@
   </p>
 
   <?php include 'wp-content\themes\Theme-Nathalie-Mota\templates_part\modale_contact.php';?>
+  
 
 </main>
 <?php get_footer(); ?>
