@@ -182,7 +182,7 @@ div.wpforms-container-full button[type=submit] {
 
 .menu-menu-1-container ul {
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 .menu-menu-1-container li {
@@ -190,6 +190,7 @@ div.wpforms-container-full button[type=submit] {
 }
 
 .menu-menu-1-container a {
+    color: $noir;
     text-decoration: none;
     font-family: $font-family-h3;
     font-size: $font-size-desktop-h3;
