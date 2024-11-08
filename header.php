@@ -16,7 +16,7 @@
         <img src="<?= THEME_URI ?>/images/Menu.svg" alt="Logo menu hamburger" class="logo_burger1">
         <?php
         wp_nav_menu(array('wp-content\themes\Theme-Nathalie-Mota' => 'Menu 1'));
-        include 'wp-content\themes\Theme-Nathalie-Mota\templates_part\menu_mobile.php'; ?>
+        include 'wp-content\themes\Theme-Nathalie-Mota\template_parts\menu_mobile.php'; ?>
     </header>
 
 </body>
