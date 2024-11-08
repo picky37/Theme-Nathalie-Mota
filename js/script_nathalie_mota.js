@@ -1,13 +1,18 @@
 console.log('connecté !');
 
-
 const popup = document.getElementById('modale_container');
 console.log(popup);
 const closeButton = document.getElementById('closeButton');
 const menuLink = document.getElementById('menu-item-26');
+const menuLinkSingle = document.getElementById('menu-item-x');
 
 
 menuLink.addEventListener('click', () => {
+    popup.classList.toggle('show');
+    console.log('close');
+});
+
+menuLinkSingle.addEventListener('click', () => {
     popup.classList.toggle('show');
     console.log('close');
 });
@@ -26,26 +31,28 @@ burger2.addEventListener('click', () => {
     menuMobile.classList.toggle('changeMenuMobile');
 });
 
-function chargerPage() {
-    fetch('page.html') // Remplacez par l'URL de votre page à charger
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erreur réseau');
-            }
-            return response.text();
-        })
-        .then(html => {
-            // Créer un élément temporaire pour obtenir le contenu du body
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
+//Code pour préremplir le champ "référence" du formulaire de contact 
 
-            // Extraire le contenu du body
-            const bodyContent = tempDiv.querySelector('body').innerHTML;
 
-            // Insérer le contenu dans la page actuelle
-            document.getElementById('contenu').innerHTML = bodyContent;
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement de la page:', error);
-        });
-}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    var referenceContainer = document.getElementById("reference-container");
+    if (referenceContainer) {
+        var reference = referenceContainer.getAttribute("data-reference");
+        console.log("Référence récupérée :", reference);
+    }
+
+    // Sélectionner le champ de formulaire avec son ID
+    var inputField = document.getElementById("wpforms-15-field_7");
+    
+    // Vérifier si l'élément existe sur la page
+    if (inputField) {
+        // Préremplir le champ avec une valeur numérique par défaut
+        inputField.value = reference;
+        console.log(inputField.value);
+    }
+});

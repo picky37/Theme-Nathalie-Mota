@@ -257,4 +257,91 @@ footer {
   footer {
     height: 50px !important;
   }
+}
+.single-post-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.post-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post-details {
+  flex: 1;
+  max-width: 50%;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-reference, .post-category, .post-format, .post-type, .post-year {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.post-image {
+  flex: 1;
+  max-width: 50%;
+}
+
+.featured-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.post-contact {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+  background-color: #aaa;
+}
+
+.post-related {
+  margin-top: 50px;
+}
+
+.related-posts {
+  display: flex;
+  gap: 20px;
+}
+
+.related-post {
+  flex: 1;
+  text-align: center;
+}
+
+.related-post img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.related-post h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
 }/*# sourceMappingURL=style.css.map */

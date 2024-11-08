@@ -19,4 +19,3 @@
         include 'wp-content\themes\Theme-Nathalie-Mota\template_parts\menu_mobile.php'; ?>
     </header>
 
-</body>
