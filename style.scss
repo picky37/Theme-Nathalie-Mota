@@ -408,11 +408,16 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    gap: 20px;
+    flex: 1 1 calc(50% - 10px);
   }
   
   .photos-apparentees img {
-    width: 100%; /* Chaque image prend toute la largeur disponible */
+    width: 564px;
+    height: 495px; /* Chaque image prend toute la largeur disponible */
     margin-bottom: 20px; /* Espacement vertical entre les images */
+    object-fit: cover;
+    gap: 20px;
   }
   
   /* Retirer l'espacement après la dernière image */
@@ -420,3 +425,6 @@ footer {
     margin-bottom: 0;
   }
   
+  .accueil{
+    flex-wrap: wrap;
+  }
