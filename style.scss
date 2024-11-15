@@ -401,3 +401,22 @@ footer {
     margin-top: 10px;
     font-size: 1.2rem;
 }
+
+.photos-apparentees {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .photos-apparentees img {
+    width: 100%; /* Chaque image prend toute la largeur disponible */
+    margin-bottom: 20px; /* Espacement vertical entre les images */
+  }
+  
+  /* Retirer l'espacement après la dernière image */
+  .photos-apparentees img:last-child {
+    margin-bottom: 0;
+  }
+  

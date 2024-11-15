@@ -14,6 +14,7 @@
 
 function enregistrer_script_nathalie_mota() {
     wp_enqueue_script('script_nathalie_mota', get_theme_file_uri('/js/script_nathalie_mota.js'), [], null, true);
+    wp_enqueue_script('script_photos_nathalie_mota', get_theme_file_uri('/js/script_photos_nathalie_mota.js'), [], null, true);
 }
 add_action( 'wp_enqueue_scripts', 'enregistrer_script_nathalie_mota' );
 
@@ -52,3 +53,35 @@ function fonts_test() {
 }
 
 define('THEME_URI', get_template_directory_uri());
+
+function mota_request_photos() {
+  // Configuration de la requête
+  $query = new WP_Query([
+      'post_type' => 'Photos', // Remplacez par le slug correct de votre CPT
+      'posts_per_page' => 2,  // Limite à 2 résultats
+  ]);
+
+  if ($query->have_posts()) {
+      $photos = [];
+
+      while ($query->have_posts()) {
+          $query->the_post();
+
+          // Ajouter les informations utiles dans un tableau
+          $photos[] = [
+              'title' => get_the_title(), // Titre de l'article
+              'image' => has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : '', // URL de l'image mise en avant
+              'link'  => get_permalink(), // URL de l'article
+          ];
+      }
+
+      wp_send_json_success($photos);
+  } else {
+      wp_send_json_error('Aucune photo trouvée.');
+  }
+
+  wp_die();
+}
+
+add_action('wp_ajax_photos', 'mota_request_photos');
+add_action('wp_ajax_nopriv_photos', 'mota_request_photos');

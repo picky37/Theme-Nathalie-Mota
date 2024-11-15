@@ -344,4 +344,23 @@ footer {
 .related-post h3 {
   margin-top: 10px;
   font-size: 1.2rem;
+}
+
+.photos-apparentees {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.photos-apparentees img {
+  width: 564px; /* Chaque image prend toute la largeur disponible */
+  height: 495px;
+  object-fit: cover;
+}
+
+/* Retirer l'espacement après la dernière image */
+.photos-apparentees img:last-child {
+  margin-left: 25px;
 }/*# sourceMappingURL=style.css.map */

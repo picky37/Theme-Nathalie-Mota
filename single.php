@@ -75,6 +75,60 @@ get_header();
     </div>
 </div>
 
+<!-- <div class="photos-apparentees">
+  <img src="/wp-content/themes/Theme-Nathalie-Mota/images/nathalie-4.jpeg" alt="Image 1">
+  <img src="/wp-content/themes/Theme-Nathalie-Mota/images/nathalie-5.jpeg" alt="Image 2">
+</div> -->
+
+<div class="photos-apparentees">
+    <?php
+    // Obtenez l'ID de la catégorie courante si vous êtes sur un article
+    $current_category_id = null;
+    if (is_single()) {
+        $categories = get_the_category();
+        if (!empty($categories)) {
+            $current_category_id = $categories[0]->term_id;
+        }
+    }
+
+    // Requête WP_Query
+    $args = [
+        'post_type'      => 'Photo', // Changez en 'photos' pour un type personnalisé
+        'posts_per_page' => 2, // Limiter à 2 résultats
+        'cat'            => $current_category_id, // Utilisez l'ID de la catégorie courante
+        'post__not_in'   => [get_the_ID()], // Exclure l'article actuel (facultatif)
+    ];
+
+    $query = new WP_Query($args);
+
+// Vérifiez si la requête retourne des résultats
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+        ?>
+        <a href="<?php the_permalink(); ?>" class="photo-link">
+            <?php
+            // Afficher l'image mise en avant ou le contenu si aucune mise en avant
+            if (has_post_thumbnail()) {
+                the_post_thumbnail('large', ['class' => 'photo-apparentee']);
+            } else {
+                // Afficher le contenu de l'article si aucune image mise en avant
+                echo '<div class="article-content">';
+                echo the_content(); // the_content() affiche le contenu de l'article
+                echo '</div>';
+            }
+            ?>
+            
+        </a>
+        <?php
+    }
+    wp_reset_postdata(); // Réinitialisez les données globales après la boucle personnalisée
+} else {
+    echo '<p>Aucun article apparenté trouvé.</p>';
+}
+?>
+</div>
+
 <?php
 get_footer();
 ?>
