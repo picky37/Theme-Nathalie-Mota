@@ -85,3 +85,90 @@ function mota_request_photos() {
 
 add_action('wp_ajax_photos', 'mota_request_photos');
 add_action('wp_ajax_nopriv_photos', 'mota_request_photos');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+
+function load_more_photos() {
+    $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
+
+    $args = array(
+        'post_type' => 'Photo',
+        'posts_per_page' => 8,
+        'paged' => $paged,
+    );
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post(); ?>
+            <a class="accueil" href="<?php the_permalink(); ?>" class="photo-link">
+                <?php
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail('large', ['class' => 'photo-apparentee']);
+                } else {
+                    echo '<div class="article-content">';
+                    echo the_content();
+                    echo '</div>';
+                }
+                ?>
+            </a>
+        <?php
+        endwhile;
+        wp_reset_postdata();
+    else :
+        echo '';
+    endif;
+
+    die(); // Arrête la requête AJAX ici
+}
+

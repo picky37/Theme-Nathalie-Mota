@@ -434,7 +434,14 @@ footer {
     margin-bottom: 20px; /* Espacement vertical entre les images */
     object-fit: cover;
     gap: 20px;
+    transition: 0.5s;
   }
+
+  .photos-apparentees img:hover {
+    filter: brightness(40%);
+    transition: 0.5s;
+  }
+
   
   /* Retirer l'espacement après la dernière image */
   .photos-apparentees img:last-child {
