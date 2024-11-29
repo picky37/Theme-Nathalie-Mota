@@ -66,54 +66,19 @@ get_header();
 
         <h3>Vous aimerez aussi</h3>
 
-        <div class="photos-apparentees">
-
-            <?php
-            // Requête pour afficher des articles similaires
-            $related_args = array(
-                'post_type' => 'Photo', // Utilisez le type de post approprié
-                'posts_per_page' => 2,
-                'post__not_in' => array(get_the_ID()),
-                'orderby' => 'rand',
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'categorie', // Remplacez par le slug de votre taxonomie
-                        'field'    => 'term_id', // Peut être 'slug' ou 'name' selon votre besoin
-                        'terms'    => wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids')), // Récupère les IDs des termes de la taxonomie associés au post actuel
-                        'operator' => 'IN', // Inclut les posts ayant au moins une des catégories
-                    ),
-                ),
-            );
-            $related_query = new WP_Query($related_args);
-
-            if ($related_query->have_posts()) :
-                while ($related_query->have_posts()) : $related_query->the_post();
-            ?>
-                    <a href="<?php the_permalink(); ?>" class="photo-link">
-                        <?php
-                        // Afficher l'image mise en avant ou le contenu si aucune mise en avant
-                        if (has_post_thumbnail()) {
-                            the_post_thumbnail('large', ['class' => 'photo-apparentee']);
-                        } else {
-                            // Afficher le contenu de l'article si aucune image mise en avant
-                            echo '<div class="article-content">';
-                            echo the_content(); // the_content() affiche le contenu de l'article
-                            echo '</div>';
-                        } ?>
-
-                <?php
-                endwhile;
-                wp_reset_postdata();
-            endif;
-                ?>
-        </div>
+        <?php 
+        
+        $number_of_photos = 2;
+        $myOrderby = "rand";
+        
+        include 'wp-content\themes\Theme-Nathalie-Mota\template_parts\photo_block.php'; 
+        
+        var_dump($number_of_photos);
+        
+        ?>
+    
     </div>
 </div>
-
-<!-- <div class="photos-apparentees">
-  <img src="/wp-content/themes/Theme-Nathalie-Mota/images/nathalie-4.jpeg" alt="Image 1">
-  <img src="/wp-content/themes/Theme-Nathalie-Mota/images/nathalie-5.jpeg" alt="Image 2">
-</div> -->
 
 <?php
 get_footer();

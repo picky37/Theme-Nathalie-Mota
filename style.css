@@ -370,6 +370,7 @@ footer {
   padding: 20px;
   gap: 20px;
   flex: 1 1 calc(50% - 10px);
+  flex-wrap: wrap;
 }
 
 .photos-apparentees img {
@@ -384,8 +385,4 @@ footer {
 /* Retirer l'espacement après la dernière image */
 .photos-apparentees img:last-child {
   margin-bottom: 0;
-}
-
-.accueil {
-  flex-wrap: wrap;
 }/*# sourceMappingURL=style.css.map */
