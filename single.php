@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-<?php include 'wp-content\themes\Theme-Nathalie-Mota\template_parts\modale_contact.php'; ?>
+<?php include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/modale_contact.php'; ?>
 
 <div class="single-post-container">
 
@@ -67,16 +67,11 @@ get_header();
         <h3>Vous aimerez aussi</h3>
 
         <?php 
-        
         $number_of_photos = 2;
         $myOrderby = "rand";
-        
-        include 'wp-content\themes\Theme-Nathalie-Mota\template_parts\photo_block.php'; 
-        
+        include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php'; 
         var_dump($number_of_photos);
-        
         ?>
-    
     </div>
 </div>
 
