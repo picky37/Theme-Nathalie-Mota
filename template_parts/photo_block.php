@@ -12,10 +12,10 @@
     if ($related_query->have_posts()) :
         while ($related_query->have_posts()) : $related_query->the_post();
     ?>
-            <div class="image_survol">
+           
                 <a class="accueil" href="<?php the_permalink(); ?>" class="photo-link">
                     <!-- <img src="wp-content\themes\Theme-Nathalie-Mota\images\regard.svg" alt="Logo" class="regard"> -->
-            </div>
+            
             <?php
             // Afficher l'image mise en avant ou le contenu si aucune mise en avant
             if (has_post_thumbnail()) {
