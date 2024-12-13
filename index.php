@@ -77,6 +77,7 @@
     $myOrderby = "none";
 
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';
+    include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/lightbox.php';
     ?>
 
     <button id="load-more" data-page="1">Charger plus</button>
