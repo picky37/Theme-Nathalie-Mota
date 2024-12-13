@@ -552,29 +552,31 @@
       }
 
       // Execute a few things once per element
-      [].forEach.call(elements, function(element, index) {
-        // Set zoom icon if necessary
+      [].forEach.call(elements, function (element, index) {
+        // Ajouter un logo "+" si l'option "zoom" est activée
         if (options.zoom && element.getElementsByTagName("img")[0]) {
-          var lightboxZoom = document.createElement("div");
-
-          lightboxZoom.classList.add("lightbox-zoom");
-          lightboxZoom.innerHTML = options.zoomText;
-
-          element.appendChild(lightboxZoom);
+            var lightboxZoom = document.createElement("div");
+    
+            lightboxZoom.classList.add("lightbox-zoom");
+            lightboxZoom.innerHTML = options.zoomText; // Texte ou HTML pour le logo "+"
+    
+            // Attacher un gestionnaire d'événement "click" au logo "+"
+            lightboxZoom.addEventListener("click", function (event) {
+                event.preventDefault(); // Empêche l'action par défaut
+                event.stopPropagation(); // Empêche le clic de se propager au lien parent
+                openOverlay(index); // Ouvre la lightbox pour cet élément
+            });
+    
+            // Ajouter le logo "+" à l'élément
+            element.appendChild(lightboxZoom);
         }
-
-        // Bind event
-        element.addEventListener("click", function (event) {
-          openOverlay(index);
-
-          event.preventDefault();
-        }, true);
-
-        // Add element to gallery
+    
+        // Ajouter l'élément à la galerie pour la navigation
         gallery.push({
-          selector: element
+            selector: element
         });
-      });
+    });
+    
 
       galleryLength = gallery.length;
       createOverlay();
