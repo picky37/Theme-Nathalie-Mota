@@ -17,12 +17,7 @@
                 <?php
                 // Afficher l'image mise en avant ou le contenu si aucune mise en avant
                 if (has_post_thumbnail()) {
-                    the_post_thumbnail('large', ['class' => 'photo-header']);
-                } else {
-                    // Afficher le contenu de l'article si aucune image mise en avant
-                    echo '<div class="image-header">';
-                    echo the_content(); // the_content() affiche le contenu de l'article
-                    echo '</div>';
+                    the_post_thumbnail('full', ['class' => 'photo-header']);
                 }
                 ?>
 

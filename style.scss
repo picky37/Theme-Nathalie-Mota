@@ -664,3 +664,9 @@ footer {
       transform: rotate(360deg);
     }
   }
+
+  .photo-header {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+  }
