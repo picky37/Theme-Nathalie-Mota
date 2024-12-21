@@ -73,7 +73,7 @@
     </div>
 
     <?php
-    $number_of_photos = 16;
+    $number_of_photos = 8;
     $myOrderby = "none";
 
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';

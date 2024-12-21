@@ -542,45 +542,57 @@
       if (userOptions) {
         mergeOptions(userOptions, options);
       }
-
+    
       // Get a list of all elements within the document
       var elements = document.querySelectorAll(selector);
-
+    
       if (!elements.length) {
         console.log("Ups, I can't find the selector \"" + selector + "\".");
         return;
       }
-
+    
       // Execute a few things once per element
       [].forEach.call(elements, function (element, index) {
         // Ajouter un logo "+" si l'option "zoom" est activée
         if (options.zoom && element.getElementsByTagName("img")[0]) {
-            var lightboxZoom = document.createElement("div");
+          var lightboxZoom = document.createElement("div");
     
-            lightboxZoom.classList.add("lightbox-zoom");
-            lightboxZoom.innerHTML = options.zoomText; // Texte ou HTML pour le logo "+"
+          lightboxZoom.classList.add("lightbox-zoom");
+          lightboxZoom.innerHTML = options.zoomText; // Texte ou HTML pour le logo "+"
     
-            // Attacher un gestionnaire d'événement "click" au logo "+"
-            lightboxZoom.addEventListener("click", function (event) {
-                event.preventDefault(); // Empêche l'action par défaut
-                event.stopPropagation(); // Empêche le clic de se propager au lien parent
-                openOverlay(index); // Ouvre la lightbox pour cet élément
-            });
+          // Attacher un gestionnaire d'événement "click" au logo "+"
+          lightboxZoom.addEventListener("click", function (event) {
+            event.preventDefault(); // Empêche l'action par défaut
+            event.stopPropagation(); // Empêche le clic de se propager au lien parent
+            openOverlay(index); // Ouvre la lightbox pour cet élément
+          });
     
-            // Ajouter le logo "+" à l'élément
-            element.appendChild(lightboxZoom);
+          // Ajouter le logo "+" à l'élément
+          element.appendChild(lightboxZoom);
         }
+    
+        // Ajouter un gestionnaire d'événement "click" à l'élément
+        element.addEventListener("click", function (event) {
+          const isImageClick = event.target.tagName === 'IMG'; // Vérifie si le clic vient de l'image
+          const postLink = element.getAttribute('data-post-link'); // Récupère le data-post-link
+    
+          if (isImageClick && postLink) {
+            // Redirection vers le lien du post si clic sur l'image
+            event.preventDefault(); // Empêche l'action par défaut
+            window.location.href = postLink; // Redirection manuelle
+          }
+        });
     
         // Ajouter l'élément à la galerie pour la navigation
         gallery.push({
-            selector: element
+          selector: element
         });
-    });
+      });
     
-
       galleryLength = gallery.length;
       createOverlay();
     };
+    
 
 
     setup(selector, userOptions);
@@ -612,4 +624,9 @@ lightbox('.lightbox', {
     docClose: false,
     swipeClose: true,
     scroll: false
+});
+
+
+document.querySelectorAll('.lightbox').forEach(function (el, index) {
+  console.log('Image détectée par la lightbox :', el.href);
 });
