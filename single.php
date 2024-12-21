@@ -48,7 +48,7 @@ get_header();
 
         <div class="post-image">
 
-            <?php the_content(); ?>
+            <?php echo get_the_post_thumbnail(get_the_ID(), 'full', array('alt' => get_the_title())); ?>
 
         </div>
 
@@ -70,7 +70,6 @@ get_header();
         $number_of_photos = 2;
         $myOrderby = "rand";
         include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php'; 
-        var_dump($number_of_photos);
         ?>
     </div>
 </div>
