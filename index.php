@@ -45,7 +45,7 @@
             <?php endforeach; ?>
         </select>
 
-        <button id="filter-button">Appliquer les filtres</button>
+        
     </div>
 
     <?php
@@ -64,17 +64,35 @@
             <?php endforeach; ?>
         </select>
 
-        <button id="filter-button">Appliquer les filtres</button>
+        
     </div>
+
+
+
+
+    <!-- Filtre | Trier par date -->
+    <label for="date-sort"></label>
+    <select name="date-sort" id="date-sort">
+        <option value="ALL">TRIER PAR</option>
+        <option value="DESC">Du plus récent au plus ancien</option>
+        <option value="ASC">Du plus ancien au plus récent</option>
+    </select>
+
+
+
+
+
 
     <?php
     $number_of_photos = 8;
-    $myOrderby = "none";
+    $myOrderby = "DESC";
 
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/lightbox.php';
     ?>
 
+
     <button id="load-more" data-page="1">Charger plus</button>
+
 </main>
 <?php get_footer(); ?>
