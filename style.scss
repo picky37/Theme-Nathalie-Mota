@@ -464,15 +464,27 @@ footer {
   }
   
   .lightbox-zoom {
-    background: #fff;
-    bottom: 0;
+    background: #000000;
+    top: 0;
     color: #2727a4;
     line-height: 1;
     padding: .306em .5em;
     position: absolute;
-    right: 0
+    right: 0;
+    opacity: 0;
   }
-  
+
+  .lightbox-zoom img {
+   width: 30px;
+   height: 30px;
+  }
+
+  .lightbox-zoom:hover {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+   }
+
   .lightbox-no-scroll {
     overflow-y: hidden;
   }

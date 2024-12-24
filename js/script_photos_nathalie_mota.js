@@ -51,7 +51,7 @@
       zoom: true,
 
       // Text or HTML for the zoom icon
-      zoomText: "&plus;",
+      zoomText: '+',
 
       // Closes the lightbox when clicking outside
       docClose: false,
@@ -558,7 +558,8 @@
           var lightboxZoom = document.createElement("div");
     
           lightboxZoom.classList.add("lightbox-zoom");
-          lightboxZoom.innerHTML = options.zoomText; // Texte ou HTML pour le logo "+"
+          lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
+// Texte ou HTML pour le logo "+"
     
           // Attacher un gestionnaire d'événement "click" au logo "+"
           lightboxZoom.addEventListener("click", function (event) {
@@ -620,7 +621,7 @@ lightbox('.lightbox', {
     counter: true,
     keyboard: true,
     zoom: true,
-    zoomText: '&plus;',
+    zoomText: '+',
     docClose: false,
     swipeClose: true,
     scroll: false
