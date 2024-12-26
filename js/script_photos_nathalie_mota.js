@@ -653,6 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
     photosDiv.addEventListener("mouseout", () => {
       
       photosDiv.querySelector(".lightbox-zoom")?.classList.remove("logo_reveal");
+      photosDiv.querySelector(".eye-icon")?.classList.remove("logo_reveal");
       photosDiv.querySelector(".post-info")?.classList.remove("logo_reveal");
     });
   });
