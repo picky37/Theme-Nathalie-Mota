@@ -647,13 +647,13 @@ document.addEventListener("DOMContentLoaded", () => {
       
       photosDiv.querySelector(".lightbox-zoom")?.classList.add("logo_reveal");
       photosDiv.querySelector(".eye-icon")?.classList.add("logo_reveal");
+      photosDiv.querySelector(".post-info")?.classList.add("logo_reveal");
     });
 
     photosDiv.addEventListener("mouseout", () => {
       
       photosDiv.querySelector(".lightbox-zoom")?.classList.remove("logo_reveal");
-      photosDiv.querySelector(".eye-icon")?.classList.remove("logo_reveal");
+      photosDiv.querySelector(".post-info")?.classList.remove("logo_reveal");
     });
   });
 });
-

@@ -504,6 +504,16 @@ footer {
     overflow-y: hidden;
   }
   
+  .post-info{
+    display: flex;
+    bottom: 25px;
+    color: white;
+    padding: 10px 10px;
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+    gap: 420px;
+  }
   
   /* Overlay */
   .lightbox-overlay {
