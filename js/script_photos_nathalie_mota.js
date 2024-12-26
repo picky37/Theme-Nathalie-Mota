@@ -136,7 +136,8 @@
     var mergeOptions = function (userOptions, options) {
       Object.keys(userOptions).forEach(function (key) {
         options[key] = userOptions[key];
-      });
+});
+
     };
 
 
@@ -153,8 +154,8 @@
       }
 
       var figure = sliderElement[index].getElementsByTagName("figure")[0],
-          image = figure.getElementsByTagName("img")[0],
-          figcaption = figure.getElementsByTagName("figcaption")[0];
+        image = figure.getElementsByTagName("img")[0],
+        figcaption = figure.getElementsByTagName("figcaption")[0];
 
       image.onload = function () {
         var loader = figure.querySelector(".lightbox-loader");
@@ -252,11 +253,11 @@
 
     var createOverlay = function () {
       var i = 0,
-          x = 0,
-          figure = null,
-          figuresIds = [],
-          figcaption = null,
-          figcaptionsIds = [];
+        x = 0,
+        figure = null,
+        figuresIds = [],
+        figcaption = null,
+        figcaptionsIds = [];
 
       for (; i < galleryLength; ++i) {
         sliderElement[i] = document.createElement("div");
@@ -542,58 +543,58 @@
       if (userOptions) {
         mergeOptions(userOptions, options);
       }
-    
+
       // Get a list of all elements within the document
       var elements = document.querySelectorAll(selector);
-    
+
       if (!elements.length) {
         console.log("Ups, I can't find the selector \"" + selector + "\".");
         return;
       }
-    
+
       // Execute a few things once per element
       [].forEach.call(elements, function (element, index) {
         // Ajouter un logo "+" si l'option "zoom" est activée
         if (options.zoom && element.getElementsByTagName("img")[0]) {
           var lightboxZoom = document.createElement("div");
-    
+
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
-// Texte ou HTML pour le logo "+"
-    
+          // Texte ou HTML pour le logo "+"
+
           // Attacher un gestionnaire d'événement "click" au logo "+"
           lightboxZoom.addEventListener("click", function (event) {
             event.preventDefault(); // Empêche l'action par défaut
             event.stopPropagation(); // Empêche le clic de se propager au lien parent
             openOverlay(index); // Ouvre la lightbox pour cet élément
           });
-    
+
           // Ajouter le logo "+" à l'élément
           element.appendChild(lightboxZoom);
         }
-    
+
         // Ajouter un gestionnaire d'événement "click" à l'élément
         element.addEventListener("click", function (event) {
           const isImageClick = event.target.tagName === 'IMG'; // Vérifie si le clic vient de l'image
           const postLink = element.getAttribute('data-post-link'); // Récupère le data-post-link
-    
+
           if (isImageClick && postLink) {
             // Redirection vers le lien du post si clic sur l'image
             event.preventDefault(); // Empêche l'action par défaut
             window.location.href = postLink; // Redirection manuelle
           }
         });
-    
+
         // Ajouter l'élément à la galerie pour la navigation
         gallery.push({
           selector: element
         });
       });
-    
+
       galleryLength = gallery.length;
       createOverlay();
     };
-    
+
 
 
     setup(selector, userOptions);
@@ -608,26 +609,47 @@
 
 
 lightbox('.lightbox', {
-    captions: true,
-    captionsSelector: 'self',
-    captionAttribute: 'title',
-    nav: 'auto',
-    navText: [
-        '&lsaquo;',
-        '&rsaquo;'
-    ],
-    close: true,
-    closeText: '&times;',
-    counter: true,
-    keyboard: true,
-    zoom: true,
-    zoomText: '+',
-    docClose: false,
-    swipeClose: true,
-    scroll: false
+  captions: true,
+  captionsSelector: 'self',
+  captionAttribute: 'title',
+  nav: 'auto',
+  navText: [
+    '&lsaquo;',
+    '&rsaquo;'
+  ],
+  close: true,
+  closeText: '&times;',
+  counter: true,
+  keyboard: true,
+  zoom: true,
+  zoomText: '+',
+  docClose: false,
+  swipeClose: true,
+  scroll: false
 });
 
 
 document.querySelectorAll('.lightbox').forEach(function (el, index) {
   console.log('Image détectée par la lightbox :', el.href);
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Sélectionner toutes les divs "photos-apparentees"
+  const photosDivs = document.querySelectorAll(".lightbox");
+  console.log(photosDivs); // Affiche toutes les divs sélectionnées
+  
+  // Parcourir chaque div pour ajouter des écouteurs
+  photosDivs.forEach((photosDiv) => {
+    photosDiv.addEventListener("mouseover", () => {
+      
+      photosDiv.querySelector(".lightbox-zoom")?.classList.add("fullscreen_reveal");
+    });
+
+    photosDiv.addEventListener("mouseout", () => {
+      
+      photosDiv.querySelector(".lightbox-zoom")?.classList.remove("fullscreen_reveal");
+    });
+  });
+});
+

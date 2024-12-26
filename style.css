@@ -401,33 +401,32 @@ footer {
 }
 
 .lightbox {
-  border: 0;
+  border: pink 2px solid;
   box-shadow: none;
   display: inline-block;
   position: relative;
   text-decoration: none;
 }
 
+.fullscreen_reveal {
+  opacity: 1 !important;
+}
+
 .lightbox-zoom {
   background: #000000;
-  top: 0;
-  color: #2727a4;
+  top: 10px;
   line-height: 1;
-  padding: 0.306em 0.5em;
+  padding: 10px 10px;
   position: absolute;
-  right: 0;
+  right: 10px;
   opacity: 0;
+  border-radius: 50%;
+  transition: 0.5s;
 }
 
 .lightbox-zoom img {
   width: 30px;
   height: 30px;
-}
-
-.lightbox-zoom:hover {
-  width: 30px;
-  height: 30px;
-  opacity: 1;
 }
 
 .lightbox-no-scroll {
