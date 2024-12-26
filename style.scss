@@ -424,15 +424,15 @@ footer {
 }
 
 .photos-apparentees {
-    display: flex;
-    justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    gap: 20px;
-    flex: 1 1 calc(50% - 10px);
-    flex-wrap: wrap;
-  }
+  display: flex;
+  justify-content: center; 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+  flex: 0 0 auto; 
+  flex-wrap: wrap;
+}
   
   .photos-apparentees img {
     width: 564px;
@@ -456,14 +456,12 @@ footer {
 
   // lien a des images mises en avant
   .lightbox {
-    border: pink 2px solid;
     box-shadow: none;
-    display: inline-block;
     position: relative;
     text-decoration: none;
   }
 
-  .fullscreen_reveal{
+  .logo_reveal{
     opacity: 1!important;
   }
   
@@ -483,6 +481,24 @@ footer {
    width: 30px;
    height: 30px;
   }
+
+  .eye-icon {
+    position: absolute;
+    top: 50%;
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  .detail-eye  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+  .detail-eye img {
+    width: 46px;
+    height: 31.2px;
+   }
 
   .lightbox-no-scroll {
     overflow-y: hidden;

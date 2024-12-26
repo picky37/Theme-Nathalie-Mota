@@ -554,13 +554,16 @@
 
       // Execute a few things once per element
       [].forEach.call(elements, function (element, index) {
-        // Ajouter un logo "+" si l'option "zoom" est activée
+        // Ajouter un logo "fullscreen" si l'option "zoom" est activée
         if (options.zoom && element.getElementsByTagName("img")[0]) {
           var lightboxZoom = document.createElement("div");
+          var detailEye = document.createElement("div");
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
-          // Texte ou HTML pour le logo "+"
+          
+          detailEye.classList.add("detail-eye");
+          detailEye.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />'
 
           // Attacher un gestionnaire d'événement "click" au logo "+"
           lightboxZoom.addEventListener("click", function (event) {
@@ -571,6 +574,7 @@
 
           // Ajouter le logo "+" à l'élément
           element.appendChild(lightboxZoom);
+          element.appendChild(detailEye);
         }
 
         // Ajouter un gestionnaire d'événement "click" à l'élément
@@ -633,22 +637,22 @@ document.querySelectorAll('.lightbox').forEach(function (el, index) {
   console.log('Image détectée par la lightbox :', el.href);
 });
 
-
+// Logique pour l'apparition/disparition du logo fullscreen et eye
 document.addEventListener("DOMContentLoaded", () => {
   // Sélectionner toutes les divs "photos-apparentees"
   const photosDivs = document.querySelectorAll(".lightbox");
-  console.log(photosDivs); // Affiche toutes les divs sélectionnées
-  
   // Parcourir chaque div pour ajouter des écouteurs
   photosDivs.forEach((photosDiv) => {
     photosDiv.addEventListener("mouseover", () => {
       
-      photosDiv.querySelector(".lightbox-zoom")?.classList.add("fullscreen_reveal");
+      photosDiv.querySelector(".lightbox-zoom")?.classList.add("logo_reveal");
+      photosDiv.querySelector(".eye-icon")?.classList.add("logo_reveal");
     });
 
     photosDiv.addEventListener("mouseout", () => {
       
-      photosDiv.querySelector(".lightbox-zoom")?.classList.remove("fullscreen_reveal");
+      photosDiv.querySelector(".lightbox-zoom")?.classList.remove("logo_reveal");
+      photosDiv.querySelector(".eye-icon")?.classList.remove("logo_reveal");
     });
   });
 });
