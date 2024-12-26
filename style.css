@@ -458,6 +458,7 @@ footer {
   opacity: 0;
   transition: 0.5s;
   gap: 420px;
+  pointer-events: none;
 }
 
 /* Overlay */
