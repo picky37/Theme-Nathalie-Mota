@@ -1,4 +1,4 @@
-
+console.log("connecté script photo !");
 (function (window, factory) {
   if (typeof define === "function" && define.amd) {
     // AMD
@@ -33,7 +33,7 @@
       nav: "auto",
 
       // Text or HTML for the navigation buttons.
-      navText: ["&lsaquo;", "&rsaquo;"],
+      navText: ["&rsaquo;", "&rsaquo;"],
 
       // Display close button.
       close: true,
@@ -109,7 +109,16 @@
     var prevButton = document.createElement("button");
     prevButton.setAttribute("type", "button");
     prevButton.setAttribute("aria-label", "Previous");
+
+    // Ajouter l'image à l'intérieur du bouton
+    prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
+
+    // Ajouter le bouton à l'overlay
     overlay.appendChild(prevButton);
+
+    console.log(prevButton);
+
+
 
 
     var nextButton = document.createElement("button");
@@ -136,7 +145,7 @@
     var mergeOptions = function (userOptions, options) {
       Object.keys(userOptions).forEach(function (key) {
         options[key] = userOptions[key];
-});
+      });
 
     };
 
@@ -264,24 +273,82 @@
         sliderElement[i].classList.add("lightbox-content");
         sliderElement[i].id = "lightbox-content-" + i;
 
-        // Create figure
-        figure = document.createElement("figure");
-        figure.innerHTML = "<div class=\"lightbox-loader\"></div>";
 
-        // Create image
-        var image = document.createElement("img");
-        image.style.opacity = "0";
 
-        if (gallery[i].selector.getElementsByTagName("img")[0] && gallery[i].selector.getElementsByTagName("img")[0].alt) {
-          image.alt = gallery[i].selector.getElementsByTagName("img")[0].alt;
-        } else {
-          image.alt = "";
-        }
-        image.setAttribute("src", "");
-        image.setAttribute("data-src", gallery[i].selector.href);
 
-        // Add image to figure
-        figure.appendChild(image);
+
+
+
+
+
+
+
+        
+////////////////////////////////////////////////////////////////////////////
+// Create figure
+var figure = document.createElement("figure");
+figure.innerHTML = "<div class=\"lightbox-loader\"></div>";
+
+// Create image
+var image = document.createElement("img");
+image.style.opacity = "0";
+
+// Check if the image has an 'alt' attribute and set it, otherwise leave it empty
+if (
+    gallery[i].selector.getElementsByTagName("img")[0] && 
+    gallery[i].selector.getElementsByTagName("img")[0].alt
+) {
+    image.alt = gallery[i].selector.getElementsByTagName("img")[0].alt;
+} else {
+    image.alt = "";
+}
+image.setAttribute("src", "");
+image.setAttribute("data-src", gallery[i].selector.href);
+
+// Add image to the figure
+figure.appendChild(image);
+
+// Create figcaption
+var figcaption = document.createElement("figcaption");
+
+// Retrieve the reference and category from the template
+var postData = document.querySelector('.post-data');
+if (postData) {
+    var reference = postData.getAttribute('data-reference') || "Référence non disponible";
+    var category = postData.getAttribute('data-category') || "Catégorie non disponible";
+
+    // Create and append reference (bottom-left)
+    var referenceDiv = document.createElement("div");
+    referenceDiv.className = "reference";
+    referenceDiv.textContent = reference;
+    figcaption.appendChild(referenceDiv);
+
+    // Create and append category (bottom-right)
+    var categoryDiv = document.createElement("div");
+    categoryDiv.className = "category";
+    categoryDiv.textContent = category;
+    figcaption.appendChild(categoryDiv);
+} else {
+    console.warn("No post-data element found. Default values will be used.");
+}
+
+// Add figcaption to the figure
+figure.appendChild(figcaption);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Create figcaption
         if (options.captions) {
@@ -322,8 +389,8 @@
         prevButton.style.display = "none";
         nextButton.style.display = "none";
       } else {
-        prevButton.innerHTML = options.navText[0];
-        nextButton.innerHTML = options.navText[1];
+        prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
+        nextButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/next_arrow.svg" alt="Next Arrow"/>';
       }
 
       // Hide counter if necessary
@@ -561,7 +628,7 @@
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
-          
+
           detailEye.classList.add("detail-eye");
           detailEye.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />'
 
@@ -623,7 +690,7 @@ lightbox('.lightbox', {
   ],
   close: true,
   closeText: '&times;',
-  counter: true,
+  counter: false,
   keyboard: true,
   zoom: true,
   zoomText: '+',
@@ -644,14 +711,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Parcourir chaque div pour ajouter des écouteurs
   photosDivs.forEach((photosDiv) => {
     photosDiv.addEventListener("mouseover", () => {
-      
+
       photosDiv.querySelector(".lightbox-zoom")?.classList.add("logo_reveal");
       photosDiv.querySelector(".eye-icon")?.classList.add("logo_reveal");
       photosDiv.querySelector(".post-info")?.classList.add("logo_reveal");
     });
 
     photosDiv.addEventListener("mouseout", () => {
-      
+
       photosDiv.querySelector(".lightbox-zoom")?.classList.remove("logo_reveal");
       photosDiv.querySelector(".eye-icon")?.classList.remove("logo_reveal");
       photosDiv.querySelector(".post-info")?.classList.remove("logo_reveal");

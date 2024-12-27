@@ -31,7 +31,22 @@
             </div>
             </a>
 
-            
+
+
+
+
+
+            <?php
+// Exemple : Récupérer les données de référence et de catégorie
+$reference = get_post_meta(get_the_ID(), 'Reference', true);
+$terms = get_the_terms(get_the_ID(), 'categorie');
+$categories = ($terms && !is_wp_error($terms)) ? implode(', ', wp_list_pluck($terms, 'name')) : 'Catégorie non disponible';
+?>
+            <div 
+    class="post-data" 
+    data-reference="<?php echo esc_attr($reference); ?>" 
+    data-category="<?php echo esc_attr($categories); ?>">
+</div>
 
     <?php
         endwhile;
