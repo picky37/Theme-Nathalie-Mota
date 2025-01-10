@@ -3,7 +3,7 @@
     $related_args = array(
         'post_type'      => 'Photo',
         'posts_per_page' => $number_of_photos,
-        'orderby'       => $myOrderby,
+        'orderby'        => $myOrderby,
     );
     $related_query = new WP_Query($related_args);
 
@@ -15,39 +15,28 @@
             <a href="<?php echo esc_url($full_image_url); ?>" class="lightbox" data-post-link="<?php echo esc_url(get_permalink()); ?>">
                 <img src="<?php echo esc_url($full_image_url); ?>" alt="<?php the_title_attribute(); ?>">
                 <div class="post-info">
-                <?php
-                // Récupérer la référence
-                $reference = get_post_meta(get_the_ID(), 'Reference', true);
-                if (! empty($reference)) {
-                    echo '<p>' . esc_html($reference) . '</p>';
-                }
-                // Récupérer les catégories
-                $terms = get_the_terms(get_the_ID(), 'categorie');
-                if ($terms && ! is_wp_error($terms)) {
-                    $categories = wp_list_pluck($terms, 'name');
-                    echo '<p>' . esc_html(implode(', ', $categories)) . '</p>';
-                }
-                ?>
-            </div>
+                    <?php
+                    // Récupérer la référence
+                    $reference = get_post_meta(get_the_ID(), 'Reference', true);
+                    if (!empty($reference)) {
+                        echo '<p>' . esc_html($reference) . '</p>';
+                    }
+                    // Récupérer les catégories
+                    $terms = get_the_terms(get_the_ID(), 'categorie');
+                    if ($terms && !is_wp_error($terms)) {
+                        $categories = wp_list_pluck($terms, 'name');
+                        echo '<p>' . esc_html(implode(', ', $categories)) . '</p>';
+                    }
+                    ?>
+                </div>
             </a>
 
-
-
-
-
-
-            <?php
-// Exemple : Récupérer les données de référence et de catégorie
-$reference = get_post_meta(get_the_ID(), 'Reference', true);
-$terms = get_the_terms(get_the_ID(), 'categorie');
-$categories = ($terms && !is_wp_error($terms)) ? implode(', ', wp_list_pluck($terms, 'name')) : 'Catégorie non disponible';
-?>
+            <!-- Div avec les attributs data-* -->
             <div 
-    class="post-data" 
-    data-reference="<?php echo esc_attr($reference); ?>" 
-    data-category="<?php echo esc_attr($categories); ?>">
-</div>
-
+                class="post-data" 
+                data-reference="<?php echo esc_attr($reference); ?>" 
+                data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>">
+            </div>
     <?php
         endwhile;
         wp_reset_postdata();
