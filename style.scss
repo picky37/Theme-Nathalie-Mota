@@ -432,6 +432,8 @@ footer {
   gap: 20px;
   flex: 0 0 auto; 
   flex-wrap: wrap;
+  min-height: 560px;
+  max-width: 100%;
 }
   
   .photos-apparentees img {
