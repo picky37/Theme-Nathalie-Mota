@@ -518,14 +518,14 @@ footer {
 }
 
 .lightbox-content figcaption {
-  background: rgba(17, 17, 17, 0.8);
-  bottom: 0;
   color: #fff;
-  display: block;
+  display: flex;
   left: 0;
-  padding: 0.25em 0.5em;
   position: absolute;
   width: 100%;
+  justify-content: space-between;
+  padding-top: 15px;
+  font-family: "PoppinsLight";
 }
 
 .lightbox-overlay button {
@@ -621,4 +621,9 @@ footer {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.lightbox-overlay button[aria-label=Next] {
+  right: 2%;
+  padding-right: 10%;
 }/*# sourceMappingURL=style.css.map */

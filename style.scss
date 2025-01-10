@@ -583,14 +583,14 @@ footer {
       }
   
       .lightbox-content figcaption {
-        background: rgba(17, 17, 17, .8);
-        bottom: 0;
         color: #fff;
-        display: block;
+        display: flex;
         left: 0;
-        padding: .25em .5em;
         position: absolute;
         width: 100%;
+        justify-content: space-between;
+        padding-top: 15px;
+        font-family: $font-family-p;
       }
   
   
@@ -709,3 +709,8 @@ footer {
     width: 100%;
     object-fit: cover;
   }
+
+  .lightbox-overlay button[aria-label=Next] {
+    right: 2%;
+    padding-right: 10%;
+}
