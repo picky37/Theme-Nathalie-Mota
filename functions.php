@@ -132,6 +132,9 @@ function filter_photos_ajax() {
                     }
                     ?>
                 </div>
+                <div class="lightbox-zoom"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" /></div>
+                <div class="detail-eye"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" /></div>
+
             </a>
             <?php
         }

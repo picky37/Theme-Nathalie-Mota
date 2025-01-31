@@ -138,15 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-
-
-
-
-
 // // CHARGER PLUS (PHOTOS) + FILTRES (FUNCTIONS.PHP)
 // let loading = false; // Indique si le chargement est en cours ou non
 // const $loadMoreButton = jQuery('#load-more'); // Sélectionne le bouton "Charger plus"
@@ -228,14 +219,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const taxonomyFilter = document.getElementById('taxonomy-filter');
     const categorieFilter = document.getElementById('categorie-filter');
     const relatedPhotos = document.getElementById('related-photos');
+    const dateFilter = document.getElementById('date-sort');
 
-    if (taxonomyFilter && categorieFilter && relatedPhotos) {
+    if (taxonomyFilter && categorieFilter && relatedPhotos && dateFilter) {
         // Ajouter un événement "change" sur les filtres
-        [taxonomyFilter, categorieFilter].forEach(function (filter) {
+        [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
             filter.addEventListener('change', function () {
                 // Récupérer les valeurs des filtres
                 const format = taxonomyFilter.value;
                 const categorie = categorieFilter.value;
+                const date = dateFilter.value;
+                console.log(date);
 
                 // Création de la requête Ajax
                 const xhr = new XMLHttpRequest();
@@ -248,20 +242,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Gestion de la réponse
                 xhr.onload = function () {
                     if (xhr.status >= 200 && xhr.status < 300) {
-                        // Remplacer le contenu avec la réponse HTML
                         relatedPhotos.innerHTML = xhr.responseText;
+                
+                        // Réappliquer les animations
+                        initializePhotoAnimations();
+                
+                        // Vérifier si setup() est disponible
+                        if (typeof window.setup === 'function') {
+                            console.log('Réexécution de setup() après Ajax');
+                            window.setup('.lightbox'); // On relance l'initialisation
+                        } else {
+                            console.error('setup() est toujours indisponible après Ajax.');
+                        }
                     } else {
                         relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
                     }
                 };
-
-                // Gestion des erreurs réseau
-                xhr.onerror = function () {
-                    relatedPhotos.innerHTML = '<p>Erreur réseau.</p>';
-                };
+                
+                
+                
+                
 
                 // Envoi de la requête avec les paramètres des filtres
-                const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
+                const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;
+                console.log(params);
                 xhr.send(params);
             });
         });
@@ -269,7 +273,5 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Un ou plusieurs éléments nécessaires (#taxonomy-filter, #categorie-filter, #related-photos) sont introuvables dans le DOM.');
     }
 });
-
-
 
 

@@ -283,129 +283,129 @@ console.log("connecté script photo !");
 
 
 
-        
-////////////////////////////////////////////////////////////////////////////
-// Create figure
-var figure = document.createElement("figure");
-figure.innerHTML = "<div class=\"lightbox-loader\"></div>";
 
-// Create image
-var image = document.createElement("img");
-image.style.opacity = "0";
+        ////////////////////////////////////////////////////////////////////////////
+        // Create figure
+        var figure = document.createElement("figure");
+        figure.innerHTML = "<div class=\"lightbox-loader\"></div>";
 
-// Check if the image has an 'alt' attribute and set it, otherwise leave it empty
-if (
-    gallery[i].selector.getElementsByTagName("img")[0] && 
-    gallery[i].selector.getElementsByTagName("img")[0].alt
-) {
-    image.alt = gallery[i].selector.getElementsByTagName("img")[0].alt;
-} else {
-    image.alt = "";
-}
-image.setAttribute("src", "");
-image.setAttribute("data-src", gallery[i].selector.href);
+        // Create image
+        var image = document.createElement("img");
+        image.style.opacity = "0";
 
-// Add image to the figure
-figure.appendChild(image);
+        // Check if the image has an 'alt' attribute and set it, otherwise leave it empty
+        if (
+          gallery[i].selector.getElementsByTagName("img")[0] &&
+          gallery[i].selector.getElementsByTagName("img")[0].alt
+        ) {
+          image.alt = gallery[i].selector.getElementsByTagName("img")[0].alt;
+        } else {
+          image.alt = "";
+        }
+        image.setAttribute("src", "");
+        image.setAttribute("data-src", gallery[i].selector.href);
 
-// Create figcaption
-var figcaption = document.createElement("figcaption");
-function updateCaptions() {
-  // Récupérer tous les éléments .post-data
-  var postDataElements = document.querySelectorAll('.post-data');
+        // Add image to the figure
+        figure.appendChild(image);
 
-  // Récupérer tous les éléments figure
-  var figures = document.querySelectorAll("figure");
+        // Create figcaption
+        var figcaption = document.createElement("figcaption");
+        function updateCaptions() {
+          // Récupérer tous les éléments .post-data
+          var postDataElements = document.querySelectorAll('.post-data');
 
-  // Vérifier si le nombre de post-data correspond au nombre de figures
-  if (postDataElements.length !== figures.length) {
-      console.warn(`Mismatch detected: ${postDataElements.length} .post-data elements but ${figures.length} figures found.`);
-  }
+          // Récupérer tous les éléments figure
+          var figures = document.querySelectorAll("figure");
 
-  // Parcourir chaque élément .post-data pour récupérer les données
-  postDataElements.forEach((postData, index) => {
-      // Vérifier si un figure correspondant existe
-      var figure = figures[index];
-      if (figure) {
-          // Supprimer l'ancien figcaption s'il existe
-          var existingFigcaption = figure.querySelector("figcaption");
-          if (existingFigcaption) {
-              figure.removeChild(existingFigcaption);
+          // Vérifier si le nombre de post-data correspond au nombre de figures
+          if (postDataElements.length !== figures.length) {
+            console.warn(`Mismatch detected: ${postDataElements.length} .post-data elements but ${figures.length} figures found.`);
           }
 
-          // Récupérer les données
-          var reference = postData.getAttribute('data-reference') || "Référence non disponible";
-          var category = postData.getAttribute('data-category') || "Catégorie non disponible";
+          // Parcourir chaque élément .post-data pour récupérer les données
+          postDataElements.forEach((postData, index) => {
+            // Vérifier si un figure correspondant existe
+            var figure = figures[index];
+            if (figure) {
+              // Supprimer l'ancien figcaption s'il existe
+              var existingFigcaption = figure.querySelector("figcaption");
+              if (existingFigcaption) {
+                figure.removeChild(existingFigcaption);
+              }
 
-          // Créer un nouveau figcaption
-          var figcaption = document.createElement("figcaption");
+              // Récupérer les données
+              var reference = postData.getAttribute('data-reference') || "Référence non disponible";
+              var category = postData.getAttribute('data-category') || "Catégorie non disponible";
 
-          // Ajouter la référence
-          var referenceDiv = document.createElement("div");
-          referenceDiv.className = "reference";
-          referenceDiv.textContent = reference;
-          figcaption.appendChild(referenceDiv);
+              // Créer un nouveau figcaption
+              var figcaption = document.createElement("figcaption");
 
-          // Ajouter la catégorie
-          var categoryDiv = document.createElement("div");
-          categoryDiv.className = "category";
-          categoryDiv.textContent = category;
-          figcaption.appendChild(categoryDiv);
+              // Ajouter la référence
+              var referenceDiv = document.createElement("div");
+              referenceDiv.className = "reference";
+              referenceDiv.textContent = reference;
+              figcaption.appendChild(referenceDiv);
 
-          // Ajouter le figcaption au figure correspondant
-          figure.appendChild(figcaption);
+              // Ajouter la catégorie
+              var categoryDiv = document.createElement("div");
+              categoryDiv.className = "category";
+              categoryDiv.textContent = category;
+              figcaption.appendChild(categoryDiv);
 
-          // Afficher dans la console les données pour vérification
-          console.log(`Processed index ${index}:`, { reference, category });
-      } else {
-          console.warn(`No figure found for post-data at index ${index}`);
-      }
-  });
+              // Ajouter le figcaption au figure correspondant
+              figure.appendChild(figcaption);
 
-  // Vérifier et traiter manuellement la dernière image si nécessaire
-  if (figures.length > postDataElements.length) {
-      var lastFigure = figures[figures.length - 1];
-      var lastPostData = postDataElements[postDataElements.length - 1];
-      if (lastFigure && lastPostData) {
-          console.warn("Processing last figure manually.");
+              // Afficher dans la console les données pour vérification
+              // console.log(`Processed index ${index}:`, { reference, category });
+            } else {
+              console.warn(`No figure found for post-data at index ${index}`);
+            }
+          });
 
-          // Supprimer l'ancien figcaption s'il existe
-          var existingFigcaption = lastFigure.querySelector("figcaption");
-          if (existingFigcaption) {
-              lastFigure.removeChild(existingFigcaption);
+          // Vérifier et traiter manuellement la dernière image si nécessaire
+          if (figures.length > postDataElements.length) {
+            var lastFigure = figures[figures.length - 1];
+            var lastPostData = postDataElements[postDataElements.length - 1];
+            if (lastFigure && lastPostData) {
+              console.warn("Processing last figure manually.");
+
+              // Supprimer l'ancien figcaption s'il existe
+              var existingFigcaption = lastFigure.querySelector("figcaption");
+              if (existingFigcaption) {
+                lastFigure.removeChild(existingFigcaption);
+              }
+
+              // Récupérer les données
+              var reference = lastPostData.getAttribute('data-reference') || "Référence non disponible";
+              var category = lastPostData.getAttribute('data-category') || "Catégorie non disponible";
+
+              // Créer un figcaption
+              var figcaption = document.createElement("figcaption");
+
+              // Ajouter la référence
+              var referenceDiv = document.createElement("div");
+              referenceDiv.className = "reference";
+              referenceDiv.textContent = reference;
+              figcaption.appendChild(referenceDiv);
+
+              // Ajouter la catégorie
+              var categoryDiv = document.createElement("div");
+              categoryDiv.className = "category";
+              categoryDiv.textContent = category;
+              figcaption.appendChild(categoryDiv);
+
+              // Ajouter le figcaption au dernier figure
+              lastFigure.appendChild(figcaption);
+
+              console.log("Last figure processed:", { reference, category });
+            } else {
+              console.error("Failed to process last figure or last post-data.");
+            }
           }
+        }
 
-          // Récupérer les données
-          var reference = lastPostData.getAttribute('data-reference') || "Référence non disponible";
-          var category = lastPostData.getAttribute('data-category') || "Catégorie non disponible";
-
-          // Créer un figcaption
-          var figcaption = document.createElement("figcaption");
-
-          // Ajouter la référence
-          var referenceDiv = document.createElement("div");
-          referenceDiv.className = "reference";
-          referenceDiv.textContent = reference;
-          figcaption.appendChild(referenceDiv);
-
-          // Ajouter la catégorie
-          var categoryDiv = document.createElement("div");
-          categoryDiv.className = "category";
-          categoryDiv.textContent = category;
-          figcaption.appendChild(categoryDiv);
-
-          // Ajouter le figcaption au dernier figure
-          lastFigure.appendChild(figcaption);
-
-          console.log("Last figure processed:", { reference, category });
-      } else {
-          console.error("Failed to process last figure or last post-data.");
-      }
-  }
-}
-
-// Exécuter après le chargement du DOM
-document.addEventListener("DOMContentLoaded", updateCaptions);
+        // Exécuter après le chargement du DOM
+        document.addEventListener("DOMContentLoaded", updateCaptions);
 
 
 
@@ -414,11 +414,11 @@ document.addEventListener("DOMContentLoaded", updateCaptions);
 
 
 
-// Add figcaption to the figure
-figure.appendChild(figcaption);
+        // Add figcaption to the figure
+        figure.appendChild(figcaption);
 
 
-//////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -782,28 +782,42 @@ lightbox('.lightbox', {
 });
 
 
-document.querySelectorAll('.lightbox').forEach(function (el, index) {
-  console.log('Image détectée par la lightbox :', el.href);
-});
 
-// Logique pour l'apparition/disparition du logo fullscreen et eye
-document.addEventListener("DOMContentLoaded", () => {
-  // Sélectionner toutes les divs "photos-apparentees"
+
+function initializePhotoAnimations() {
   const photosDivs = document.querySelectorAll(".lightbox");
-  // Parcourir chaque div pour ajouter des écouteurs
+
   photosDivs.forEach((photosDiv) => {
-    photosDiv.addEventListener("mouseover", () => {
+      if (!photosDiv.dataset.eventAttached) {
+          const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
+          const eyeIcon = photosDiv.querySelector(".eye-icon");
+          const postInfo = photosDiv.querySelector(".post-info");
 
-      photosDiv.querySelector(".lightbox-zoom")?.classList.add("logo_reveal");
-      photosDiv.querySelector(".eye-icon")?.classList.add("logo_reveal");
-      photosDiv.querySelector(".post-info")?.classList.add("logo_reveal");
-    });
+          console.log('Vérification des éléments pour ', photosDiv);
+          console.log('lightbox-zoom:', lightboxZoom ? 'OK' : 'Manquant');
+          console.log('eye-icon:', eyeIcon ? 'OK' : 'Manquant');
+          console.log('post-info:', postInfo ? 'OK' : 'Manquant');
 
-    photosDiv.addEventListener("mouseout", () => {
+          photosDiv.addEventListener("mouseover", () => {
+              lightboxZoom?.classList.add("logo_reveal");
+              eyeIcon?.classList.add("logo_reveal");
+              postInfo?.classList.add("logo_reveal");
+          });
 
-      photosDiv.querySelector(".lightbox-zoom")?.classList.remove("logo_reveal");
-      photosDiv.querySelector(".eye-icon")?.classList.remove("logo_reveal");
-      photosDiv.querySelector(".post-info")?.classList.remove("logo_reveal");
-    });
+          photosDiv.addEventListener("mouseout", () => {
+              lightboxZoom?.classList.remove("logo_reveal");
+              eyeIcon?.classList.remove("logo_reveal");
+              postInfo?.classList.remove("logo_reveal");
+          });
+
+          photosDiv.dataset.eventAttached = "true";
+      }
   });
-});
+
+  console.log("Animations et fonctionnalités réinitialisées");
+}
+
+// Exécuter au chargement initial
+document.addEventListener("DOMContentLoaded", initializePhotoAnimations);
+
+
