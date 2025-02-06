@@ -62,6 +62,8 @@ get_header();
 
     </div>
 
+<div class="traitNoir"></div>
+
     <div class="post-related">
 
         <h3>Vous aimerez aussi</h3>
