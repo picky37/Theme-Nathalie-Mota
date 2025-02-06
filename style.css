@@ -78,11 +78,16 @@ body {
 
 .titre_header_desktop {
   position: absolute;
-  top: 50%; /* Positionne l'image à 50% de la hauteur de l'écran */
-  left: 50%; /* Positionne l'image à 50% de la largeur de l'écran */
-  transform: translate(-50%, -50%); /* Centre parfaitement en ajustant l'origine */
-  max-width: 100%; /* Assure que l'image reste responsive */
-  max-height: 100%; /* Empêche l'image de dépasser la hauteur de l'écran */
+  top: 50%;
+  /* Positionne l'image à 50% de la hauteur de l'écran */
+  left: 50%;
+  /* Positionne l'image à 50% de la largeur de l'écran */
+  transform: translate(-50%, -50%);
+  /* Centre parfaitement en ajustant l'origine */
+  max-width: 100%;
+  /* Assure que l'image reste responsive */
+  max-height: 100%;
+  /* Empêche l'image de dépasser la hauteur de l'écran */
 }
 
 .randomHeader {
@@ -106,12 +111,15 @@ body {
   background-color: #fff;
   border: 3px solid black;
   transition: opacity 0.3s ease-in-out;
-  width: 597px;
-  display: none;
+  max-width: 597px;
+  width: 95%;
+  opacity: 0;
 }
 
 .show {
-  display: block !important;
+  opacity: 1 !important;
+  z-index: 100;
+  visibility: visible;
 }
 
 /* Formulaire contact du popup */
@@ -236,6 +244,7 @@ footer {
 
 .changeMenuMobile {
   top: 0;
+  z-index: 100;
 }
 
 @media (max-width: 768px) {
@@ -300,7 +309,11 @@ footer {
   margin-bottom: 10px;
 }
 
-.post-reference, .post-category, .post-format, .post-type, .post-year {
+.post-reference,
+.post-category,
+.post-format,
+.post-type,
+.post-year {
   font-size: 1rem;
   margin-bottom: 5px;
 }
@@ -328,6 +341,7 @@ footer {
   padding: 20px;
   background-color: #f7f7f7;
   text-align: center;
+  z-index: 99;
 }
 
 .contact-button {
@@ -379,13 +393,16 @@ footer {
   flex: 0 0 auto;
   flex-wrap: wrap;
   min-height: 560px;
-  max-width: 100%;
+  max-width: 1500px;
+  height: 100%;
 }
 
 .photos-apparentees img {
   width: 564px;
-  height: 495px; /* Chaque image prend toute la largeur disponible */
-  margin-bottom: 20px; /* Espacement vertical entre les images */
+  height: 495px;
+  /* Chaque image prend toute la largeur disponible */
+  margin-bottom: 20px;
+  /* Espacement vertical entre les images */
   -o-object-fit: cover;
      object-fit: cover;
   gap: 20px;
@@ -628,4 +645,45 @@ footer {
 .lightbox-overlay button[aria-label=Next] {
   right: 2%;
   padding-right: 10%;
+}
+
+.photo-filters {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1148px;
+  gap: 130px;
+}
+
+.photo-filters > select {
+  padding-left: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding-right: 20px;
+}
+
+.mesFiltres {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 796px) {
+  .photo-filters {
+    flex-wrap: wrap;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    width: 1110px;
+  }
+}
+#taxonomy-filter, #categorie-filter, #date-sort {
+  border: solid 1px #D8D8D8 !important;
+  border-radius: 8px !important;
+  height: 42px;
+  width: 260px;
+  background: url("http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/arrow_filters.svg") no-repeat calc(100% - 10px) center;
+  background-color: white;
 }/*# sourceMappingURL=style.css.map */

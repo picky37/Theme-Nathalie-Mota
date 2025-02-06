@@ -1,15 +1,59 @@
 console.log("connecté!!!!!!!!!!!");
 
-// Stocke la modale de contact
-const popup = document.getElementById('modale_container');
+// Sélectionne les éléments
+const menuLink = document.getElementById("menu-item-26"); // Bouton pour ouvrir la modale
+const popup = document.getElementById("modale_container"); // La modale elle-même
 
-// Stocke le lien "CONTACT" du header
-const menuLink = document.getElementById('menu-item-26');
+// Vérifie si les éléments existent
+if (menuLink && popup) {
+    // Ouvrir/Fermer la modale au clic sur menuLink
+    menuLink.addEventListener("click", (event) => {
+        event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
+        popup.classList.toggle("show");
+        console.log("bouton clicked");
+    });
 
-// Logique d'apparition/disparition de la modale de contact depuis le header
-menuLink.addEventListener('click', () => {
-    popup.classList.toggle('show');
-});
+    // Fermer la modale si on clique en dehors d'elle
+    document.addEventListener("click", (event) => {
+        if (!popup.contains(event.target) && !menuLink.contains(event.target)) {
+            popup.classList.remove("show");
+        }
+    });
+}
+
+const boutonContactSingle = document.getElementById("contact-button");
+
+if (boutonContactSingle) {
+
+    boutonContactSingle.addEventListener("click", (event) => {
+        event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
+        popup.classList.toggle("show");
+        console.log("bouton clicked mameness");
+    });
+
+}
+
+const boutonContactMobile = document.querySelector('#menu-menu-2 > li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-26');
+
+if (boutonContactMobile) {
+
+    boutonContactMobile.addEventListener("click", (event) => {
+        event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
+        popup.classList.toggle("show");
+        console.log("bouton clicked mameness");
+    });
+
+}
+
+
+
+
+
+
+
+
+
+
 
 // Stocke le logo burger du header mobile
 const burger1 = document.querySelector('.logo_burger1');
@@ -32,22 +76,20 @@ burger2.addEventListener('click', () => {
     menuMobile.classList.toggle('changeMenuMobile');
 });
 
-//Code pour préremplir le champ "référence" du formulaire de contact 
+// Code pour préremplir le champ "référence" du formulaire de contact
 document.addEventListener("DOMContentLoaded", function () {
     var referenceContainer = document.getElementById("reference-container");
-    if (referenceContainer) {
-        var reference = referenceContainer.getAttribute("data-reference");
-    }
+    var reference = referenceContainer ? referenceContainer.getAttribute("data-reference") : null;
 
     // Sélectionner le champ de formulaire avec son ID
     var inputField = document.getElementById("wpforms-15-field_7");
 
-    // Vérifier si l'élément existe sur la page
-    if (inputField) {
-        // Préremplir le champ avec une valeur numérique par défaut
+    // Vérifier si l'élément existe et si la référence est valide
+    if (inputField && reference) {
         inputField.value = reference;
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuLinkSingle = document.getElementById('menu-item-x');
@@ -243,10 +285,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 xhr.onload = function () {
                     if (xhr.status >= 200 && xhr.status < 300) {
                         relatedPhotos.innerHTML = xhr.responseText;
-                
+
                         // Réappliquer les animations
                         initializePhotoAnimations();
-                
+
                         // Vérifier si setup() est disponible
                         if (typeof window.setup === 'function') {
                             console.log('Réexécution de setup() après Ajax');
@@ -258,10 +300,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
                     }
                 };
-                
-                
-                
-                
+
+
+
+
 
                 // Envoi de la requête avec les paramètres des filtres
                 const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;

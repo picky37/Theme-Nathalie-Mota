@@ -58,7 +58,7 @@ get_header();
 
         <p>Cette photo vous intéresse ?</p>
 
-        <li id="menu-item-x"><a href="#modale" class="contact-button">Contact</a></li>
+        <li id="menu-item-x"><a href="#modale" id="contact-button">Contact</a></li>
 
     </div>
 

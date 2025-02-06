@@ -37,50 +37,42 @@
     ));
     ?>
 
-    <div class="photo-filters">
-        <select id="taxonomy-filter">
-            <option value="">FORMATS</option>
-            <?php foreach ($formats as $format) : ?>
-                <option value="<?php echo $format->slug; ?>"><?php echo $format->name; ?></option>
-            <?php endforeach; ?>
-        </select>
+    <div class="mesFiltres">
+        <div class="photo-filters">
 
-        
+            <?php
+            $categories = get_terms(array(
+                'taxonomy' => 'categorie',
+                'hide_empty' => false,
+            ));
+            ?>
+
+            <!-- Filtre pour les catégories -->
+
+            <select id="categorie-filter">
+                <option value="">CATÉGORIES</option>
+                <?php foreach ($categories as $categorie) : ?>
+                    <option value="<?php echo $categorie->slug; ?>"><?php echo $categorie->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <select id="taxonomy-filter">
+                <option value="">FORMATS</option>
+                <?php foreach ($formats as $format) : ?>
+                    <option value="<?php echo $format->slug; ?>"><?php echo $format->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <!-- Filtre | Trier par date -->
+            <label for="date-sort"></label>
+            <select name="date-sort" id="date-sort">
+                <option value="ALL">TRIER PAR</option>
+                <option value="DESC">Du plus récent au plus ancien</option>
+                <option value="ASC">Du plus ancien au plus récent</option>
+            </select>
+
+        </div>
     </div>
-
-    <?php
-    $categories = get_terms(array(
-        'taxonomy' => 'categorie',
-        'hide_empty' => false,
-    ));
-    ?>
-
-    <!-- Filtre pour les catégories -->
-    <div class="photo-filters">
-        <select id="categorie-filter">
-            <option value="">CATÉGORIES</option>
-            <?php foreach ($categories as $categorie) : ?>
-                <option value="<?php echo $categorie->slug; ?>"><?php echo $categorie->name; ?></option>
-            <?php endforeach; ?>
-        </select>
-
-        
-    </div>
-
-
-
-
-    <!-- Filtre | Trier par date -->
-    <label for="date-sort"></label>
-    <select name="date-sort" id="date-sort">
-        <option value="ALL">TRIER PAR</option>
-        <option value="DESC">Du plus récent au plus ancien</option>
-        <option value="ASC">Du plus ancien au plus récent</option>
-    </select>
-
-
-
-
 
 
     <?php
@@ -88,7 +80,7 @@
     $myOrderby = "DESC";
 
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';
-    include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/lightbox.php';
+
     ?>
 
 
