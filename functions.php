@@ -83,17 +83,17 @@ define('THEME_URI', get_template_directory_uri());
 function filter_photos_ajax() {
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
-    $date_order = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC'; // Valeur par défaut
+    $date_order = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC';
+    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
 
-    // Debug : vérifier la valeur reçue
-    error_log("Valeur reçue pour le tri par date : " . $date_order);
+    $date_order = strtoupper($date_order);
+    $date_order = in_array($date_order, ['ASC', 'DESC']) ? $date_order : 'DESC';
 
-    // Correction du tri par date
     $args = [
         'post_type'      => 'photo',
-        'posts_per_page' => -1,
-        'orderby'        => 'post_date', // S'assurer que la date est bien utilisée pour le tri
-        'order'          => in_array(strtoupper($date_order), ['ASC', 'DESC']) ? strtoupper($date_order) : 'DESC',
+        'posts_per_page' => $posts_per_page,
+        'orderby'        => 'post_date',
+        'order'          => $date_order,
         'tax_query'      => [],
     ];
 
@@ -113,27 +113,21 @@ function filter_photos_ajax() {
         ];
     }
 
-    // Debug : vérifier la requête SQL générée
     $query = new WP_Query($args);
-    error_log("Requête SQL générée : " . $query->request);
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-
-            // Génération du HTML des posts filtrés
             $full_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
             ?>
             <a href="<?php echo esc_url($full_image_url); ?>" class="lightbox" data-post-link="<?php echo esc_url(get_permalink()); ?>">
                 <img src="<?php echo esc_url($full_image_url); ?>" alt="<?php the_title_attribute(); ?>">
                 <div class="post-info">
                     <?php
-                    // Récupérer la référence
                     $reference = get_post_meta(get_the_ID(), 'Reference', true);
                     if (!empty($reference)) {
                         echo '<p>' . esc_html($reference) . '</p>';
                     }
-                    // Récupérer les catégories
                     $terms = get_the_terms(get_the_ID(), 'categorie');
                     if ($terms && !is_wp_error($terms)) {
                         $categories = wp_list_pluck($terms, 'name');
@@ -141,8 +135,12 @@ function filter_photos_ajax() {
                     }
                     ?>
                 </div>
-                <div class="lightbox-zoom"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" /></div>
-                <div class="detail-eye"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône œil détail" class="eye-icon" /></div>
+                <div class="lightbox-zoom">
+                    <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />
+                </div>
+                <div class="detail-eye">
+                    <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />
+                </div>
             </a>
             <?php
         }
@@ -155,6 +153,8 @@ function filter_photos_ajax() {
 
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
+
+
 
 
 

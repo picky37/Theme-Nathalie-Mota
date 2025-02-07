@@ -4,60 +4,83 @@ console.log("connecté!!!!!!!!!!!");
 // Function des filtres
 
 document.addEventListener('DOMContentLoaded', function () {
+    let postsPerPage = 8; // Nombre initial de posts chargés
+    const loadMoreButton = document.getElementById('load-more'); // Bouton "Charger plus"
+    const relatedPhotos = document.getElementById('related-photos'); // Conteneur des posts
+
     const taxonomyFilter = document.getElementById('taxonomy-filter');
     const categorieFilter = document.getElementById('categorie-filter');
-    const relatedPhotos = document.getElementById('related-photos');
     const dateFilter = document.getElementById('date-sort');
 
-    if (taxonomyFilter && categorieFilter && relatedPhotos && dateFilter) {
+    // Fonction pour charger les posts (filtrage ou load more)
+    function fetchPosts(reset = true) {
+        const date = dateFilter ? dateFilter.value : 'desc';
+        const format = taxonomyFilter ? taxonomyFilter.value : '';
+        const categorie = categorieFilter ? categorieFilter.value : '';
+
+        console.log(`Chargement des posts - Nombre de posts: ${postsPerPage}`);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', wp_data.ajax_url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                if (reset) {
+                    relatedPhotos.innerHTML = xhr.responseText; // Remplace les posts si un filtre est appliqué
+                } else {
+                    relatedPhotos.insertAdjacentHTML('beforeend', xhr.responseText); // Ajoute les nouveaux posts
+                }
+
+                // Réappliquer animations et la lightbox après AJAX
+                initializePhotoAnimations();
+
+                if (typeof window.lightbox === 'function') {
+                    console.log('Réinitialisation de la lightbox après AJAX');
+                    window.lightbox('.lightbox');
+                } else {
+                    console.error('La lightbox n\'est pas disponible après AJAX.');
+                }
+
+                // Vérifier si des posts sont encore disponibles
+                if (xhr.responseText.trim() === '<p>Aucun résultat trouvé.</p>') {
+                    loadMoreButton.style.display = 'none'; // Masquer le bouton s'il n'y a plus de posts
+                    console.log("Plus de posts à charger !");
+                } else {
+                    loadMoreButton.style.display = 'block'; // Afficher le bouton si encore des posts
+                }
+
+            } else {
+                console.error("Erreur lors du chargement des articles.");
+            }
+        };
+
+        const params = `action=filter_photos&posts_per_page=${encodeURIComponent(postsPerPage)}&date=${encodeURIComponent(date)}&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
+        xhr.send(params);
+    }
+
+    // Appliquer les filtres
+    if (taxonomyFilter && categorieFilter && dateFilter) {
         [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
             filter.addEventListener('change', function () {
-                const format = taxonomyFilter.value;
-                const categorie = categorieFilter.value;
-                const date = dateFilter.value;
-
-                console.log("Valeurs envoyées à AJAX :", { format, categorie, date });
-
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', wp_data.ajax_url, true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-                relatedPhotos.innerHTML = '<p>Chargement...</p>';
-
-                xhr.onload = function () {
-                    if (xhr.status >= 200 && xhr.status < 300) {
-                        relatedPhotos.innerHTML = xhr.responseText;
-                        console.log("Réponse AJAX reçue, réinitialisation des animations.");
-
-                        // Réappliquer les animations après AJAX
-                        initializePhotoAnimations();
-
-                        if (typeof window.lightbox === 'function') {
-                            console.log('Réinitialisation de la lightbox après AJAX');
-                            window.lightbox('.lightbox');
-                        } else {
-                            console.error('La lightbox n\'est pas disponible après AJAX.');
-                        }
-
-                        // Vérifier que les dates sont bien chargées après AJAX
-                        document.querySelectorAll('.post-data').forEach(post => {
-                            console.log("Date après AJAX :", post.dataset.date);
-                        });
-
-                    } else {
-                        relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
-                    }
-                };
-
-                const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;
-                console.log("Params envoyés :", params);
-                xhr.send(params);
+                postsPerPage = 8; // Réinitialiser à 8 posts si un filtre est appliqué
+                fetchPosts(true); // Recharger les posts avec les nouveaux filtres
             });
         });
-    } else {
-        console.error('Un ou plusieurs éléments (#taxonomy-filter, #categorie-filter, #related-photos, #date-sort) sont manquants.');
+    }
+
+    // Load More : Ajouter 8 posts supplémentaires à chaque clic
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener('click', function () {
+            postsPerPage += 8; // Augmenter le nombre de posts affichés
+            fetchPosts(false); // Charger plus de posts sans remplacer ceux existants
+        });
     }
 });
+
+
+
+
 
 
 

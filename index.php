@@ -84,7 +84,7 @@
     ?>
 
 
-    <button id="load-more" data-page="1">Charger plus</button>
+    <button id="load-more">Charger plus</button>
 
 </main>
 <?php get_footer(); ?>
