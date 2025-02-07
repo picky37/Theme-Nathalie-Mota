@@ -83,36 +83,45 @@ define('THEME_URI', get_template_directory_uri());
 function filter_photos_ajax() {
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
+    $date_order = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC'; // Valeur par défaut
 
+    // Debug : vérifier la valeur reçue
+    error_log("Valeur reçue pour le tri par date : " . $date_order);
+
+    // Correction du tri par date
     $args = [
-        'post_type' => 'photo',
+        'post_type'      => 'photo',
         'posts_per_page' => -1,
-        'tax_query' => [],
+        'orderby'        => 'post_date', // S'assurer que la date est bien utilisée pour le tri
+        'order'          => in_array(strtoupper($date_order), ['ASC', 'DESC']) ? strtoupper($date_order) : 'DESC',
+        'tax_query'      => [],
     ];
 
     if (!empty($format)) {
         $args['tax_query'][] = [
             'taxonomy' => 'format',
-            'field' => 'slug',
-            'terms' => $format,
+            'field'    => 'slug',
+            'terms'    => $format,
         ];
     }
 
     if (!empty($categorie)) {
         $args['tax_query'][] = [
             'taxonomy' => 'categorie',
-            'field' => 'slug',
-            'terms' => $categorie,
+            'field'    => 'slug',
+            'terms'    => $categorie,
         ];
     }
 
+    // Debug : vérifier la requête SQL générée
     $query = new WP_Query($args);
+    error_log("Requête SQL générée : " . $query->request);
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
 
-            // Génère le même HTML que dans ton template
+            // Génération du HTML des posts filtrés
             $full_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
             ?>
             <a href="<?php echo esc_url($full_image_url); ?>" class="lightbox" data-post-link="<?php echo esc_url(get_permalink()); ?>">
@@ -133,8 +142,7 @@ function filter_photos_ajax() {
                     ?>
                 </div>
                 <div class="lightbox-zoom"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" /></div>
-                <div class="detail-eye"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" /></div>
-
+                <div class="detail-eye"><img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône œil détail" class="eye-icon" /></div>
             </a>
             <?php
         }
@@ -147,6 +155,8 @@ function filter_photos_ajax() {
 
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
+
+
 
 
 

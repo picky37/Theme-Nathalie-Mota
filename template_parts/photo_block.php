@@ -37,7 +37,9 @@
             <div 
                 class="post-data" 
                 data-reference="<?php echo esc_attr($reference); ?>" 
-                data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>">
+                data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>"
+                data-date="<?php echo esc_attr(get_the_date('Y-m-d H:i:s')); ?>">
+                
             </div>
     <?php
         endwhile;

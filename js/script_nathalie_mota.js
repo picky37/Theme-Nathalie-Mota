@@ -1,68 +1,65 @@
 console.log("connecté!!!!!!!!!!!");
-
+ 
 
 // Function des filtres
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Sélection des filtres et du conteneur
     const taxonomyFilter = document.getElementById('taxonomy-filter');
     const categorieFilter = document.getElementById('categorie-filter');
     const relatedPhotos = document.getElementById('related-photos');
     const dateFilter = document.getElementById('date-sort');
 
     if (taxonomyFilter && categorieFilter && relatedPhotos && dateFilter) {
-        // Ajouter un événement "change" sur les filtres
         [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
             filter.addEventListener('change', function () {
-                // Récupérer les valeurs des filtres
                 const format = taxonomyFilter.value;
                 const categorie = categorieFilter.value;
                 const date = dateFilter.value;
-                console.log(date);
 
-                // Création de la requête Ajax
+                console.log("Valeurs envoyées à AJAX :", { format, categorie, date });
+
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', wp_data.ajax_url, true); // ajaxurl doit être défini dans WordPress
+                xhr.open('POST', wp_data.ajax_url, true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-                // Afficher un message de chargement avant de recevoir la réponse
                 relatedPhotos.innerHTML = '<p>Chargement...</p>';
 
-                // Gestion de la réponse
                 xhr.onload = function () {
                     if (xhr.status >= 200 && xhr.status < 300) {
                         relatedPhotos.innerHTML = xhr.responseText;
+                        console.log("Réponse AJAX reçue, réinitialisation des animations.");
 
-                        // Réappliquer les animations
+                        // Réappliquer les animations après AJAX
                         initializePhotoAnimations();
 
-                        // Vérifier si setup() est disponible
-                        if (typeof window.setup === 'function') {
-                            console.log('Réexécution de setup() après Ajax');
-                            window.lightbox('.lightbox'); // On relance l'initialisation
+                        if (typeof window.lightbox === 'function') {
+                            console.log('Réinitialisation de la lightbox après AJAX');
+                            window.lightbox('.lightbox');
                         } else {
-                            console.error('setup() est toujours indisponible après Ajax.');
-                            window.lightbox('.lightbox'); // On relance l'initialisation
+                            console.error('La lightbox n\'est pas disponible après AJAX.');
                         }
+
+                        // Vérifier que les dates sont bien chargées après AJAX
+                        document.querySelectorAll('.post-data').forEach(post => {
+                            console.log("Date après AJAX :", post.dataset.date);
+                        });
+
                     } else {
                         relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
                     }
                 };
 
-
-
-
-
-                // Envoi de la requête avec les paramètres des filtres
                 const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;
-                console.log(params);
+                console.log("Params envoyés :", params);
                 xhr.send(params);
             });
         });
     } else {
-        console.error('Un ou plusieurs éléments nécessaires (#taxonomy-filter, #categorie-filter, #related-photos) sont introuvables dans le DOM.');
+        console.error('Un ou plusieurs éléments (#taxonomy-filter, #categorie-filter, #related-photos, #date-sort) sont manquants.');
     }
 });
+
+
 
 
 
