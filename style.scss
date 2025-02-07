@@ -493,6 +493,7 @@ footer {
   box-shadow: none;
   position: relative;
   text-decoration: none;
+  z-index: 1;
 }
 
 .logo_reveal {
@@ -509,6 +510,12 @@ footer {
   opacity: 0;
   border-radius: 50%;
   transition: 0.5s;
+  border: 2px solid red;
+  z-index: 10000;
+}
+
+.test{
+  margin-top: 50px;
 }
 
 .lightbox-zoom img {

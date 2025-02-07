@@ -710,15 +710,20 @@ console.log("connecté script photo !");
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
+console.log("logo fullscreen créé");
+
+
 
           detailEye.classList.add("detail-eye");
           detailEye.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />'
 
           // Attacher un gestionnaire d'événement "click" au logo "+"
           lightboxZoom.addEventListener("click", function (event) {
+            console.log("événement lancé");
             event.preventDefault(); // Empêche l'action par défaut
             event.stopPropagation(); // Empêche le clic de se propager au lien parent
             openOverlay(index); // Ouvre la lightbox pour cet élément
+            console.log("lightbox lancée");
           });
 
           // Ajouter le logo "+" à l'élément

@@ -1,5 +1,104 @@
 console.log("connecté!!!!!!!!!!!");
 
+
+// Function des filtres
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Sélection des filtres et du conteneur
+    const taxonomyFilter = document.getElementById('taxonomy-filter');
+    const categorieFilter = document.getElementById('categorie-filter');
+    const relatedPhotos = document.getElementById('related-photos');
+    const dateFilter = document.getElementById('date-sort');
+
+    if (taxonomyFilter && categorieFilter && relatedPhotos && dateFilter) {
+        // Ajouter un événement "change" sur les filtres
+        [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
+            filter.addEventListener('change', function () {
+                // Récupérer les valeurs des filtres
+                const format = taxonomyFilter.value;
+                const categorie = categorieFilter.value;
+                const date = dateFilter.value;
+                console.log(date);
+
+                // Création de la requête Ajax
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', wp_data.ajax_url, true); // ajaxurl doit être défini dans WordPress
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                // Afficher un message de chargement avant de recevoir la réponse
+                relatedPhotos.innerHTML = '<p>Chargement...</p>';
+
+                // Gestion de la réponse
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        relatedPhotos.innerHTML = xhr.responseText;
+
+                        // Réappliquer les animations
+                        initializePhotoAnimations();
+
+                        // Vérifier si setup() est disponible
+                        if (typeof window.setup === 'function') {
+                            console.log('Réexécution de setup() après Ajax');
+                            window.lightbox('.lightbox'); // On relance l'initialisation
+                        } else {
+                            console.error('setup() est toujours indisponible après Ajax.');
+                            window.lightbox('.lightbox'); // On relance l'initialisation
+                        }
+                    } else {
+                        relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
+                    }
+                };
+
+
+
+
+
+                // Envoi de la requête avec les paramètres des filtres
+                const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;
+                console.log(params);
+                xhr.send(params);
+            });
+        });
+    } else {
+        console.error('Un ou plusieurs éléments nécessaires (#taxonomy-filter, #categorie-filter, #related-photos) sont introuvables dans le DOM.');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Sélectionne les éléments
 const menuLink = document.getElementById("menu-item-26"); // Bouton pour ouvrir la modale
 const popup = document.getElementById("modale_container"); // La modale elle-même
@@ -256,64 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Sélection des filtres et du conteneur
-    const taxonomyFilter = document.getElementById('taxonomy-filter');
-    const categorieFilter = document.getElementById('categorie-filter');
-    const relatedPhotos = document.getElementById('related-photos');
-    const dateFilter = document.getElementById('date-sort');
 
-    if (taxonomyFilter && categorieFilter && relatedPhotos && dateFilter) {
-        // Ajouter un événement "change" sur les filtres
-        [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
-            filter.addEventListener('change', function () {
-                // Récupérer les valeurs des filtres
-                const format = taxonomyFilter.value;
-                const categorie = categorieFilter.value;
-                const date = dateFilter.value;
-                console.log(date);
-
-                // Création de la requête Ajax
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', wp_data.ajax_url, true); // ajaxurl doit être défini dans WordPress
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-                // Afficher un message de chargement avant de recevoir la réponse
-                relatedPhotos.innerHTML = '<p>Chargement...</p>';
-
-                // Gestion de la réponse
-                xhr.onload = function () {
-                    if (xhr.status >= 200 && xhr.status < 300) {
-                        relatedPhotos.innerHTML = xhr.responseText;
-
-                        // Réappliquer les animations
-                        initializePhotoAnimations();
-
-                        // Vérifier si setup() est disponible
-                        if (typeof window.setup === 'function') {
-                            console.log('Réexécution de setup() après Ajax');
-                            window.setup('.lightbox'); // On relance l'initialisation
-                        } else {
-                            console.error('setup() est toujours indisponible après Ajax.');
-                        }
-                    } else {
-                        relatedPhotos.innerHTML = '<p>Une erreur est survenue.</p>';
-                    }
-                };
-
-
-
-
-
-                // Envoi de la requête avec les paramètres des filtres
-                const params = `action=filter_photos&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}&date=${encodeURIComponent(date)}`;
-                console.log(params);
-                xhr.send(params);
-            });
-        });
-    } else {
-        console.error('Un ou plusieurs éléments nécessaires (#taxonomy-filter, #categorie-filter, #related-photos) sont introuvables dans le DOM.');
-    }
-});
 
 

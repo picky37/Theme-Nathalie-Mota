@@ -29,8 +29,9 @@
                     }
                     ?>
                 </div>
-                
             </a>
+            
+
 
             <!-- Div avec les attributs data-* -->
             <div 
