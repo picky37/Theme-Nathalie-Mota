@@ -809,4 +809,72 @@ footer {
 
 .traitNoir{
   border-top: 1px solid black;
+  margin-top: 50px;
 }
+
+
+
+
+
+
+
+
+
+
+
+//single post
+
+/* Conteneur principal */
+.post-navigation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px; /* Espace fixe entre les flèches */
+  margin-top: 20px;
+}
+
+/* Style des flèches */
+.nav-item {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.nav-item img {
+  width: 23px;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Miniature fixe au-dessus des flèches */
+.nav-thumbnail {
+  position: absolute;
+  bottom: 120%; /* Ajuste la position pour être au-dessus des flèches */
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.next{
+  right: 1px;
+}
+
+/* Affichage de la miniature au survol */
+.nav-item:hover .nav-thumbnail {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.post-nav{
+  display: flex;
+  justify-content: end;
+  margin-top: -90px;
+}
+
