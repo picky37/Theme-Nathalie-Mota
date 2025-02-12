@@ -83,8 +83,9 @@
 
     ?>
 
-
+    <div class="loadMore">
     <button id="load-more">Charger plus</button>
+    </div>
 
 </main>
 <?php get_footer(); ?>

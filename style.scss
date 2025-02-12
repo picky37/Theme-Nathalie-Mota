@@ -402,7 +402,6 @@ footer {
   display: flex;
   align-items: center;
   gap: 10%;
-  width: 590px;
 }
 
 .post-contact p{
@@ -421,6 +420,28 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.loadMore{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+#load-more{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #000;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  width: 272px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .contact-button:hover {
@@ -494,6 +515,7 @@ footer {
   position: relative;
   text-decoration: none;
   z-index: 1;
+  height: 520px;
 }
 
 .logo_reveal {
@@ -510,7 +532,6 @@ footer {
   opacity: 0;
   border-radius: 50%;
   transition: 0.5s;
-  border: 2px solid red;
   z-index: 10000;
 }
 
