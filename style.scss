@@ -483,7 +483,7 @@ footer {
   flex: 0 0 auto;
   flex-wrap: wrap;
   min-height: 560px;
-  max-width: 1500px;
+  max-width: 1200px;
   height: 100%;
 }
 
@@ -515,7 +515,7 @@ footer {
   position: relative;
   text-decoration: none;
   z-index: 1;
-  height: 520px;
+  height: 495px;
 }
 
 .logo_reveal {
@@ -568,7 +568,7 @@ footer {
 
 .post-info {
   display: flex;
-  bottom: 25px;
+  bottom: 5px;
   color: white;
   padding: 10px 10px;
   position: absolute;
@@ -826,6 +826,7 @@ footer {
 
 #menu-item-x{
   list-style: none;
+  z-index: 99;
 }
 
 .traitNoir{
@@ -899,3 +900,6 @@ footer {
   margin-top: -90px;
 }
 
+.post-data{
+  display: none;
+}

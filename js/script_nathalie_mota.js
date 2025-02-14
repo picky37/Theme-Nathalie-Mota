@@ -4,21 +4,25 @@ console.log("connecté!!!!!!!!!!!");
 // Function des filtres
 
 document.addEventListener('DOMContentLoaded', function () {
-    let postsPerPage = 8; // Nombre initial de posts chargés
-    const loadMoreButton = document.getElementById('load-more'); // Bouton "Charger plus"
-    const relatedPhotos = document.getElementById('related-photos'); // Conteneur des posts
+    let postsPerPage = 8; // Nombre de posts chargés par clic
+    let offset = document.querySelectorAll('#related-photos a').length; // Nombre initial de posts affichés
+    const loadMoreButton = document.getElementById('load-more');
+    const relatedPhotos = document.getElementById('related-photos');
 
     const taxonomyFilter = document.getElementById('taxonomy-filter');
     const categorieFilter = document.getElementById('categorie-filter');
     const dateFilter = document.getElementById('date-sort');
 
-    // Fonction pour charger les posts (filtrage ou load more)
     function fetchPosts(reset = true) {
         const date = dateFilter ? dateFilter.value : 'desc';
         const format = taxonomyFilter ? taxonomyFilter.value : '';
         const categorie = categorieFilter ? categorieFilter.value : '';
 
-        console.log(`Chargement des posts - Nombre de posts: ${postsPerPage}`);
+        if (reset) {
+            offset = 0; // Réinitialiser l'offset quand on applique un filtre
+        }
+
+        console.log(`Chargement des posts - Offset: ${offset}, Nombre de posts: ${postsPerPage}`);
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', wp_data.ajax_url, true);
@@ -28,11 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (xhr.status >= 200 && xhr.status < 300) {
                 if (reset) {
                     relatedPhotos.innerHTML = xhr.responseText; // Remplace les posts si un filtre est appliqué
+                    offset = document.querySelectorAll('#related-photos a').length; // Réajuster l'offset
                 } else {
                     relatedPhotos.insertAdjacentHTML('beforeend', xhr.responseText); // Ajoute les nouveaux posts
+                    offset += postsPerPage; // Incrémenter l'offset après ajout
                 }
 
-                // Réappliquer animations et la lightbox après AJAX
                 initializePhotoAnimations();
 
                 if (typeof window.lightbox === 'function') {
@@ -42,41 +47,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error('La lightbox n\'est pas disponible après AJAX.');
                 }
 
-                // Vérifier si des posts sont encore disponibles
                 if (xhr.responseText.trim() === '<p>Aucun résultat trouvé.</p>') {
-                    loadMoreButton.style.display = 'none'; // Masquer le bouton s'il n'y a plus de posts
+                    loadMoreButton.style.display = 'none';
                     console.log("Plus de posts à charger !");
                 } else {
-                    loadMoreButton.style.display = 'block'; // Afficher le bouton si encore des posts
+                    loadMoreButton.style.display = 'block';
                 }
-
             } else {
                 console.error("Erreur lors du chargement des articles.");
             }
         };
 
-        const params = `action=filter_photos&posts_per_page=${encodeURIComponent(postsPerPage)}&date=${encodeURIComponent(date)}&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
+        const params = `action=filter_photos&posts_per_page=${encodeURIComponent(postsPerPage)}&offset=${encodeURIComponent(offset)}&date=${encodeURIComponent(date)}&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
         xhr.send(params);
     }
 
-    // Appliquer les filtres
     if (taxonomyFilter && categorieFilter && dateFilter) {
         [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
             filter.addEventListener('change', function () {
-                postsPerPage = 8; // Réinitialiser à 8 posts si un filtre est appliqué
-                fetchPosts(true); // Recharger les posts avec les nouveaux filtres
+                postsPerPage = 8; 
+                fetchPosts(true);
             });
         });
     }
 
-    // Load More : Ajouter 8 posts supplémentaires à chaque clic
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', function () {
-            postsPerPage += 1; // Augmenter le nombre de posts affichés
-            fetchPosts(false); // Charger plus de posts sans remplacer ceux existants
+            fetchPosts(false);
         });
     }
 });
+
+
+
 
 
 
