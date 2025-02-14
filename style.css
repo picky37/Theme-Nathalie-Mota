@@ -798,4 +798,12 @@ footer {
 
 .post-data {
   display: none;
+}
+
+.mentionFooter {
+  color: #000000;
+  text-decoration: none;
+  font-family: "SpaceMonoRegular";
+  font-size: 1.125rem;
+  padding-left: 40px;
 }/*# sourceMappingURL=style.css.map */
