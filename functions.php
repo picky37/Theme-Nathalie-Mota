@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Nathalie Mota functions and definitions
  *
@@ -13,7 +14,8 @@
  */
 
 // Fonction combinée pour enregistrer les scripts et les styles
-function enregistrer_scripts_et_styles_nathalie_mota() {
+function enregistrer_scripts_et_styles_nathalie_mota()
+{
     // Enregistrer les scripts
     wp_enqueue_script('script_nathalie_mota', get_theme_file_uri('/js/script_nathalie_mota.js'), [], null, true);
 
@@ -24,16 +26,15 @@ function enregistrer_scripts_et_styles_nathalie_mota() {
             'ajax_url' => admin_url('admin-ajax.php'), // URL de admin-ajax.php
         )
     );
-    
-    
+
+
 
     wp_enqueue_script('script_photos_nathalie_mota', get_theme_file_uri('/js/script_photos_nathalie_mota.js'), [], null, true);
-    
+
     // Enregistrer le style
     wp_enqueue_style('style_nathalie_mota', get_stylesheet_uri());
-    
-    }
-    add_action('wp_enqueue_scripts', 'enregistrer_scripts_et_styles_nathalie_mota');
+}
+add_action('wp_enqueue_scripts', 'enregistrer_scripts_et_styles_nathalie_mota');
 
 // Met dans un constante l'url de la racine du thème
 define('THEME_URI', get_template_directory_uri());
@@ -80,7 +81,8 @@ define('THEME_URI', get_template_directory_uri());
 
 
 
-function filter_photos_ajax() {
+function filter_photos_ajax()
+{
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $date_order = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC';
@@ -117,11 +119,12 @@ function filter_photos_ajax() {
 
     $query = new WP_Query($args);
 
+
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
             $full_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-            ?>
+?>
             <a href="<?php echo esc_url($full_image_url); ?>" class="lightbox" data-post-link="<?php echo esc_url(get_permalink()); ?>">
                 <img src="<?php echo esc_url($full_image_url); ?>" alt="<?php the_title_attribute(); ?>">
                 <div class="post-info">
@@ -143,8 +146,19 @@ function filter_photos_ajax() {
                 <div class="detail-eye">
                     <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />
                 </div>
+            
             </a>
-            <?php
+
+
+
+            <div
+                class="post-data"
+                data-reference="<?php echo esc_attr($reference); ?>"
+                data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>"
+                data-date="<?php echo esc_attr(get_the_date('Y-m-d H:i:s')); ?>">
+            </div>
+
+<?php
         }
     } else {
         echo '<p>Aucun résultat trouvé.</p>';
@@ -155,58 +169,3 @@ function filter_photos_ajax() {
 
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

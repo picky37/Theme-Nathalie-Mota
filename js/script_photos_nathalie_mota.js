@@ -1,5 +1,6 @@
 console.log("connecté script photo !");
 (function (window, factory) {
+  
   if (typeof define === "function" && define.amd) {
     // AMD
     define(factory);
@@ -42,7 +43,7 @@ console.log("connecté script photo !");
       closeText: "&times;",
 
       // Display current image index
-      counter: true,
+      counter: false,
 
       // Allow keyboard navigation.
       keyboard: true,
@@ -310,7 +311,14 @@ console.log("connecté script photo !");
 
         // Create figcaption
         var figcaption = document.createElement("figcaption");
+
+
+        
+
+
         function updateCaptions() {
+
+         
           // Récupérer tous les éléments .post-data
           var postDataElements = document.querySelectorAll('.post-data');
 
@@ -356,7 +364,7 @@ console.log("connecté script photo !");
               figure.appendChild(figcaption);
 
               // Afficher dans la console les données pour vérification
-              // console.log(`Processed index ${index}:`, { reference, category });
+              console.log("choupette...");
             } else {
               console.warn(`No figure found for post-data at index ${index}`);
             }
@@ -432,27 +440,7 @@ console.log("connecté script photo !");
 
 
 
-        // Create figcaption
-        if (options.captions) {
-          figcaption = document.createElement("figcaption");
-          figcaption.style.opacity = "0";
-
-          if (options.captionsSelector == "self" && gallery[i].selector.getAttribute(options.captionAttribute)) {
-            figcaption.innerHTML = gallery[i].selector.getAttribute(options.captionAttribute);
-          } else if (options.captionsSelector == "img" && gallery[i].selector.getElementsByTagName("img")[0].getAttribute(options.captionAttribute)) {
-            figcaption.innerHTML = gallery[i].selector.getElementsByTagName("img")[0].getAttribute(options.captionAttribute);
-          }
-
-          if (figcaption.innerHTML) {
-            figure.id = "lightbox-figure-" + x;
-            figcaption.id = "lightbox-figcaption-" + x;
-            figure.appendChild(figcaption);
-
-            figuresIds.push("lightbox-figure-" + x);
-            figcaptionsIds.push("lightbox-figcaption-" + x);
-            ++x;
-          }
-        }
+        
 
         // Add figure to slider element
         sliderElement[i].appendChild(figure);
@@ -759,11 +747,9 @@ console.log("logo fullscreen créé");
   };
 
   return lightbox;
+
+  
 }));
-
-
-
-
 
 
 lightbox('.lightbox', {
@@ -785,6 +771,10 @@ lightbox('.lightbox', {
   swipeClose: true,
   scroll: false
 });
+
+
+
+
 
 
 

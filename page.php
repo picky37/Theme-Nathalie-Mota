@@ -13,5 +13,5 @@
     endif;
     ?>
 </main>
-
+<?php include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/modale_contact.php'; ?>
 <?php get_footer(); ?>

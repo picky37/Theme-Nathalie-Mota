@@ -1,5 +1,5 @@
 console.log("connecté!!!!!!!!!!!");
- 
+
 
 // Function des filtres
 
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dateFilter = document.getElementById('date-sort');
 
     function fetchPosts(reset = true) {
+
         const date = dateFilter ? dateFilter.value : 'desc';
         const format = taxonomyFilter ? taxonomyFilter.value : '';
         const categorie = categorieFilter ? categorieFilter.value : '';
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     relatedPhotos.innerHTML = xhr.responseText; // Remplace les posts si un filtre est appliqué
                     offset = document.querySelectorAll('#related-photos a').length; // Réajuster l'offset
                 } else {
+
                     relatedPhotos.insertAdjacentHTML('beforeend', xhr.responseText); // Ajoute les nouveaux posts
                     offset += postsPerPage; // Incrémenter l'offset après ajout
                 }
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (typeof window.lightbox === 'function') {
                     console.log('Réinitialisation de la lightbox après AJAX');
+
                     window.lightbox('.lightbox');
                 } else {
                     console.error('La lightbox n\'est pas disponible après AJAX.');
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (taxonomyFilter && categorieFilter && dateFilter) {
         [taxonomyFilter, categorieFilter, dateFilter].forEach(function (filter) {
             filter.addEventListener('change', function () {
-                postsPerPage = 8; 
+                postsPerPage = 8;
                 fetchPosts(true);
             });
         });
@@ -74,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', function () {
             fetchPosts(false);
+
         });
     }
 });
