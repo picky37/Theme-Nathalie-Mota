@@ -8,9 +8,9 @@ License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-html {
-  font-size: 100%;
-}
+// ---------------------
+// 1. IMPORT DES FONTS
+// ---------------------
 
 @font-face {
   font-family: 'SpaceMonoBoldItalic';
@@ -32,108 +32,135 @@ html {
   src: url('./fonts/Poppins/Poppins-Light.woff2') format('woff2');
 }
 
-$font-family-h1: 'SpaceMonoBoldItalic';
-$font-family-h2: 'SpaceMonoRegularItalic';
-$font-family-h3: 'SpaceMonoRegular';
-$font-family-description: 'SpaceMonoRegular';
-$font-family-p: 'PoppinsLight';
+// ---------------------
+// 2. VARIABLES
+// ---------------------
 
-$font-size-desktop-h1: 6rem;
-$font-size-desktop-h2: 4.125rem;
-$font-size-desktop-h3: 1.125rem;
-$font-size-desktop-description: 0.875rem;
-$font-size-desktop-p: 0.875rem;
+$font-h1: 'SpaceMonoBoldItalic';
+$font-h2: 'SpaceMonoRegularItalic';
+$font-h3: 'SpaceMonoRegular';
+$font-p: 'PoppinsLight';
 
-$font-size-mobile-h1: 1.724rem;
-$font-size-mobile-h2: 2.875rem;
-$font-size-mobile-h3: 1.125rem;
-$font-size-mobile-description: 0.875rem;
-$font-size-mobile-p: 0.875rem;
+$font-sizes-desktop: (
+  h1: 6rem,
+  h2: 4.125rem,
+  h3: 1.125rem,
+  p: 0.875rem
+);
 
-$rouge: #E00000;
-$rougeSecondaire: #FE5858;
-$rougeTertiaire: #FFD6D6;
-$noir: #000000;
-$bleuFonce: #313144;
-$grisFonce: #C4C4C4;
-$grisMedium: #D8D8D8;
-$grisLight: #E5E5E5;
+$font-sizes-mobile: (
+  h1: 1.724rem,
+  h2: 2.875rem,
+  h3: 1.125rem,
+  p: 0.875rem
+);
 
-h1 {
-  font-family: $font-family-h1, monospace;
-  font-size: $font-size-desktop-h1;
+$colors: (
+  rouge: #E00000,
+  rouge-secondaire: #FE5858,
+  rouge-tertiaire: #FFD6D6,
+  noir: #000000,
+  bleu-fonce: #313144,
+  gris-fonce: #C4C4C4,
+  gris-medium: #D8D8D8,
+  gris-light: #E5E5E5
+);
+
+// ---------------------
+// 3. MIXINS & FONCTIONS
+// ---------------------
+
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
-h2 {
-  font-family: $font-family-h2, monospace;
-  font-size: $font-size-desktop-h2;
+@mixin font-size($size-map, $tag) {
+  font-size: map-get($size-map, $tag);
 }
 
-h3 {
-  font-family: $font-family-h3, monospace;
-  font-size: $font-size-desktop-h3;
-}
+// ---------------------
+// 4. STYLES GÉNÉRAUX
+// ---------------------
 
-.description {
-  font-family: $font-family-description, monospace;
-  font-size: $font-size-desktop-description;
+html {
+  font-size: 100%;
 }
-
-p {
-  font-family: $font-family-p, monospace;
-  font-size: $font-family-p;
-}
-
 
 * {
   margin: 0;
   padding: 0;
-}
-
-.my-header,
-.my-header-mobile {
-  min-height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 4px 4px 0px #00000017;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: rgb(236, 236, 236);
+  background-color: map-get($colors, gris-light);
 }
+
+// ---------------------
+// 5. TYPOGRAPHIE
+// ---------------------
+
+h1, h2, h3, p {
+  font-family: $font-h3, monospace;
+}
+
+h1 {
+  font-family: $font-h1, monospace;
+  @include font-size($font-sizes-desktop, h1);
+}
+
+h2 {
+  font-family: $font-h2, monospace;
+  @include font-size($font-sizes-desktop, h2);
+}
+
+h3 {
+  @include font-size($font-sizes-desktop, h3);
+}
+
+p {
+  font-family: $font-p, monospace;
+  @include font-size($font-sizes-desktop, p);
+}
+
+// ---------------------
+// 6. HEADER & FOOTER
+// ---------------------
+
+.my-header, .my-header-mobile {
+  @include flex-center(row, space-around, center);
+  min-height: 72px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px #00000017;
+}
+
+footer {
+  height: 208px;
+  background-color: white;
+  border-top: 2px solid black;
+  @include flex-center;
+}
+
+// ---------------------
+// 7. IMAGES & LOGOS
+// ---------------------
 
 .img_logo {
   height: 9px;
 }
 
-.titre_header_desktop {
-  position: absolute;
-  top: 50%;
-  /* Positionne l'image à 50% de la hauteur de l'écran */
-  left: 50%;
-  /* Positionne l'image à 50% de la largeur de l'écran */
-  transform: translate(-50%, -50%);
-  /* Centre parfaitement en ajustant l'origine */
-  max-width: 100%;
-  /* Assure que l'image reste responsive */
-  max-height: 100%;
-  /* Empêche l'image de dépasser la hauteur de l'écran */
-}
-
-.randomHeader {
-  width: 100%;
-
-}
-
-.image-header img {
-  width: 100%;
+.photo-header {
   height: 100vh;
+  width: 100%;
   object-fit: cover;
 }
 
-/* Code pour le popup de contact */
+// ---------------------
+// 8. MODALE CONTACT
+// ---------------------
 
 #modale_container {
   position: fixed;
@@ -156,175 +183,71 @@ body {
   visibility: visible;
 }
 
-/* Formulaire contact du popup */
-
-#wpforms-15 {
-  display: flex;
-  justify-content: center;
-}
+// ---------------------
+// 9. FORMULAIRE CONTACT
+// ---------------------
 
 .wpforms-field-medium {
-  border: solid 1px $grisMedium !important;
+  border: solid 1px map-get($colors, gris-medium) !important;
   border-radius: 8px !important;
 }
 
-.wpforms-field-label {
-  font-family: $font-family-p;
-  font-size: $font-size-desktop-p;
-}
-
-#wpforms-15-field_5-container textarea {
-  resize: none !important;
-}
-
 .wpforms-submit-container {
-  display: flex;
-  justify-content: center;
+  @include flex-center;
 }
-
 
 #wpforms-submit-15 {
-  background-color: $grisMedium !important;
-  padding: 8px 15px 8px 15px;
-  gap: 10px;
+  background-color: map-get($colors, gris-medium) !important;
+  padding: 8px 15px;
   border-radius: 2px !important;
   width: 263px;
   height: 50px;
 }
 
-div.wpforms-container-full button[type=submit] {
-  color: $noir !important;
-  font-family: $font-family-description !important;
-  font-size: $font-size-desktop-description !important;
-}
-
-.wpforms-container input.wpforms-field-medium {
-  max-width: 100% !important;
-}
-
-/* Menu header desktop */
+// ---------------------
+// 10. MENU HEADER
+// ---------------------
 
 .menu-menu-1-container ul {
   display: flex;
   gap: 40px;
 }
 
-#menu-menu-2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu-menu-1-container li {
-  list-style-type: none;
-}
-
-.menu-menu-1-container a {
-  color: $noir;
-  text-decoration: none;
-  font-family: $font-family-h3;
-  font-size: $font-size-desktop-h3;
-}
-
-/* footer */
-
-footer {
-  height: 208px;
-  background-color: white;
-  border-top: solid black 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#menu-menu-3 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.menu-menu-2-container li {
-  list-style-type: none;
-}
-
+.menu-menu-1-container a,
 .menu-menu-2-container a {
-  color: $noir;
+  color: map-get($colors, noir);
   text-decoration: none;
-  font-family: $font-family-h3;
-  font-size: $font-size-desktop-h3;
+  font-family: $font-h3;
+  @include font-size($font-sizes-desktop, h3);
 }
 
-
-
-
-/* Code pour le menu mobile */
-
-.modal {
-  background-color: $rouge;
-  height: 100vh;
-  position: fixed;
-  top: -100vh;
-  left: 0;
-  width: 100%;
-  transition: top 0.9s;
-}
-
-.navbar-mobile-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 1px;
-}
-
-.navbar-mobile-list a {
-  font-family: $font-family-h3;
-  font-size: 44px;
-  color: white;
-}
-
-.changeMenuMobile {
-  top: 0;
-  z-index: 100;
-}
+// ---------------------
+// 11. RESPONSIVE DESIGN
+// ---------------------
 
 @media (max-width: 768px) {
   h1 {
-    font-size: $font-size-mobile-h1;
+    @include font-size($font-sizes-mobile, h1);
   }
 
   h2 {
-    font-size: $font-size-mobile-h2;
+    @include font-size($font-sizes-mobile, h2);
   }
 
   h3 {
-    font-size: $font-size-mobile-h3;
+    @include font-size($font-sizes-mobile, h3);
   }
 
   p {
-    font-size: $font-size-mobile-p;
-  }
-
-  .description {
-    font-size: $font-size-mobile-description;
+    @include font-size($font-sizes-mobile, p);
   }
 
   .my-header .menu-menu-1-container {
     display: none;
   }
-
-  .navbar-mobile-list .menu-menu-1-container {
-    display: flex;
-    margin-top: 80%;
-  }
 }
 
 @media (min-width: 769px) {
-  .logo_burger1 {
-    display: none;
-  }
-
   #menu-menu-3 {
     flex-direction: row;
     gap: 40px;
@@ -335,33 +258,28 @@ footer {
   }
 }
 
-
-
-//Single post
+// ---------------------
+// 12. SINGLE POST
+// ---------------------
 
 .single-post-container {
-  display: flex;
-  flex-direction: column;
+  @include flex-center(column);
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .post-header {
-  display: flex;
+  @include flex-center(row, space-between, end);
   flex-wrap: wrap;
   gap: 20px;
-  display: flex;
-  align-items: end;
 }
 
 .post-details {
   flex: 1;
   max-width: 50%;
-  border-bottom: 1px solid black; /* Bordure en bas */
+  border-bottom: 1px solid black;
 }
-
 
 .post-title {
   font-size: 2.5rem;
@@ -370,544 +288,34 @@ footer {
   text-transform: uppercase;
 }
 
-.post-reference,
-.post-category,
-.post-format,
-.post-type,
-.post-year {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
-
 .post-image {
   flex: 1;
   max-width: 50%;
+
+  img {
+    max-width: 100%;
+    object-fit: contain;
+    height: 100%;
+  }
 }
 
-.post-image img {
-  max-width: 100%;
-  object-fit: contain;
-  height: 100%;
-}
+// ---------------------
+// 13. BOUTONS
+// ---------------------
 
-.featured-image {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.post-contact {
-  padding-top: 50px;
-  padding-bottom: 50px;
+#contact-button, #load-more {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10%;
-}
-
-.post-contact p{
- font-size: 15px;
-}
-
-#contact-button {
-  display: inline-block;
-  padding: 10px 20px;
+  width: 272px;
+  height: 50px;
   background-color: #ccc;
   color: #000;
   text-decoration: none;
   transition: background-color 0.3s;
-  width: 272px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.loadMore{
-  display: flex;
-  justify-content: center;
-  padding-bottom: 50px;
-}
-
-#load-more{
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ccc;
-  color: #000;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  width: 272px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: none;
 }
 
 .contact-button:hover {
   background-color: #aaa;
-}
-
-.post-related {
-  margin-top: 50px;
-}
-
-.related-posts {
-  display: flex;
-  gap: 20px;
-}
-
-.related-post {
-  flex: 1;
-  text-align: center;
-}
-
-.related-post img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.related-post h3 {
-  margin-top: 10px;
-  font-size: 1.2rem;
-}
-
-.photos-apparentees {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  gap: 20px;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  min-height: 560px;
-  max-width: 1200px;
-  height: 100%;
-}
-
-.photos-apparentees img {
-  width: 564px;
-  height: 495px;
-  /* Chaque image prend toute la largeur disponible */
-  margin-bottom: 20px;
-  /* Espacement vertical entre les images */
-  object-fit: cover;
-  gap: 20px;
-  transition: 0.5s;
-}
-
-.photos-apparentees img:hover {
-  filter: brightness(40%);
-  transition: 0.5s;
-}
-
-/* Retirer l'espacement après la dernière image */
-.photos-apparentees img:last-child {
-  margin-bottom: 0;
-}
-
-
-// lien a des images mises en avant
-.lightbox {
-  box-shadow: none;
-  position: relative;
-  text-decoration: none;
-  z-index: 1;
-  height: 495px;
-}
-
-.logo_reveal {
-  opacity: 1 !important;
-}
-
-.lightbox-zoom {
-  background: #000000;
-  top: 10px;
-  line-height: 1;
-  padding: 10px 10px;
-  position: absolute;
-  right: 10px;
-  opacity: 0;
-  border-radius: 50%;
-  transition: 0.5s;
-  z-index: 10000;
-}
-
-.test{
-  margin-top: 50px;
-}
-
-.lightbox-zoom img {
-  width: 30px;
-  height: 30px;
-}
-
-.eye-icon {
-  position: absolute;
-  top: 50%;
-  opacity: 0;
-  transition: 0.5s;
-}
-
-.detail-eye {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.detail-eye img {
-  width: 46px;
-  height: 31.2px;
-}
-
-.lightbox-no-scroll {
-  overflow-y: hidden;
-}
-
-.post-info {
-  display: flex;
-  bottom: 5px;
-  color: white;
-  padding: 10px 10px;
-  position: absolute;
-  opacity: 0;
-  transition: 0.5s;
-  gap: 420px;
-  pointer-events: none;
-}
-
-/* Overlay */
-.lightbox-overlay {
-  background: rgba(17, 17, 17, .8);
-  bottom: 0;
-  box-sizing: border-box;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 32;
-  overflow: hidden;
-}
-
-.lightbox-overlay *,
-.lightbox-overlay *::before,
-.lightbox-overlay *::after {
-  box-sizing: inherit;
-}
-
-.lightbox-overlay[aria-hidden="true"] {
-  display: none;
-}
-
-
-/* Slider */
-.lightbox-slider {
-  -webkit-transition: left .3s ease, -webkit-transform .3s ease;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: left .3s ease, -webkit-transform .3s ease;
-  transition: left .3s ease, transform .3s ease, -webkit-transform .3s ease;
-  transition: left .3s ease, transform .3s ease;
-  white-space: nowrap;
-}
-
-
-/* Content */
-.lightbox-content {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 100%;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.lightbox-content figure {
-  position: relative;
-}
-
-.lightbox-content img {
-  display: block;
-  height: auto;
-  max-height: 85vh;
-  max-width: 85vw;
-  width: auto;
-}
-
-.lightbox-content figcaption {
-  color: #fff;
-  display: flex;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  justify-content: space-between;
-  padding-top: 15px;
-  font-family: $font-family-p;
-}
-
-
-.lightbox-overlay button {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-
-  background: transparent;
-  border: 0;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.6em;
-  height: 1.6em;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  text-align: center;
-  width: 1.6em;
-}
-
-.lightbox-overlay button:focus {
-  border: 1px solid #fff;
-  outline: 0;
-}
-
-.lightbox-overlay button:disabled {
-  cursor: default;
-  opacity: .5;
-}
-
-.lightbox-overlay button[aria-label="Previous"],
-.lightbox-overlay button[aria-label="Next"] {
-  top: 50%;
-  top: calc(50% - (1.6em / 2));
-}
-
-.lightbox-overlay button[aria-label="Previous"] {
-  left: 2%;
-}
-
-.lightbox-overlay button[aria-label="Next"] {
-  right: 2%;
-}
-
-.lightbox-overlay button[aria-label="Close"] {
-  top: 1em;
-  right: 2%;
-}
-
-.lightbox-counter {
-  background: transparent;
-  color: #fff;
-  font-size: 1.15em;
-  left: 2%;
-  position: absolute;
-  top: 1em;
-}
-
-
-.lightbox-loader {
-  width: 5em;
-  height: 5em;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -2.5em;
-  margin-left: -2.5em;
-}
-
-.lightbox-loader::before {
-  -webkit-animation: spin 1s infinite;
-  animation: spin 1s infinite;
-  border-radius: 100%;
-  border: .5em solid #9f9f9f;
-  border-top-color: #2727a4;
-  bottom: 0;
-  content: "";
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
-}
-
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-
-.photo-header {
-  height: 100vh;
-  width: 100%;
-  object-fit: cover;
-}
-
-.lightbox-overlay button[aria-label=Next] {
-  right: 2%;
-  padding-right: 10%;
-}
-
-
-.photo-filters {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1148px;
-  gap: 130px;
-}
-
-.photo-filters>select {
-  padding-left: 20px;
-  appearance: none;
-  padding-right: 20px;
-}
-
-.mesFiltres {
-  padding-top: 60px;
-  padding-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-@media screen and (max-width: 796px) {
-  .photo-filters {
-    flex-wrap: wrap;
-    padding-top: 70px;
-    padding-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    width: 1110px;
-  }
-  .post-header{
-    display: flex;
-  }
-}
-
-
-#taxonomy-filter,
-#categorie-filter,
-#date-sort {
-  border: solid 1px $grisMedium !important;
-  border-radius: 8px !important;
-  height: 42px;
-  width: 260px;
-  background: url("http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/arrow_filters.svg") no-repeat calc(100% - 10px) center;
-  background-color: white;
-}
-
-#menu-item-x{
-  list-style: none;
-  z-index: 30;
-}
-
-.traitNoir{
-  border-top: 1px solid black;
-  margin-top: 50px;
-}
-
-
-
-
-
-
-
-
-
-
-
-//single post
-
-/* Conteneur principal */
-.post-navigation {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 35px; /* Espace fixe entre les flèches */
-  margin-top: 20px;
-}
-
-/* Style des flèches */
-.nav-item {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.nav-item img {
-  width: 23px;
-  height: auto;
-  transition: opacity 0.3s ease;
-}
-
-/* Miniature fixe au-dessus des flèches */
-.nav-thumbnail {
-  position: absolute;
-  bottom: 120%; /* Ajuste la position pour être au-dessus des flèches */
-  width: 80px;
-  height: 80px;
-  background-size: cover;
-  background-position: center;
-  
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.next{
-  right: 1px;
-}
-
-/* Affichage de la miniature au survol */
-.nav-item:hover .nav-thumbnail {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-.post-nav{
-  display: flex;
-  justify-content: end;
-  margin-top: -90px;
-}
-
-.post-data{
-  display: none;
-}
-
-.mentionFooter{
-  color: #000000;
-    text-decoration: none;
-    font-family: "SpaceMonoRegular";
-    font-size: 1.125rem;
-    padding-left: 40px;
 }

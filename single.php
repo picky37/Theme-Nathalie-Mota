@@ -1,22 +1,22 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
 <?php include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/modale_contact.php'; ?>
 
 <div class="single-post-container">
 
     <div class="post-header">
-
         <div class="post-details">
-
             <h1 class="post-title"><?php the_title(); ?></h1>
 
-            <p class="post-reference">Référence : <?php echo esc_html(get_post_meta(get_the_ID(), 'Reference', true)); ?></p>
+            <p class="post-reference">
+                Référence : <?php echo esc_html(get_post_meta(get_the_ID(), 'Reference', true)); ?>
+            </p>
 
             <?php $reference = esc_attr(get_post_meta(get_the_ID(), 'Reference', true)); ?>
 
-            <div id="reference-container" data-reference="<?php echo htmlspecialchars($reference, ENT_QUOTES, 'UTF-8'); ?>"></div>
+            <div id="reference-container" 
+                 data-reference="<?php echo htmlspecialchars($reference, ENT_QUOTES, 'UTF-8'); ?>">
+            </div>
 
             <p class="post-category">
                 Catégorie :
@@ -40,33 +40,26 @@ get_header();
                 ?>
             </p>
 
-            <p class="post-type">Type : <?php echo esc_html(get_post_meta(get_the_ID(), 'Type', true)); ?></p>
+            <p class="post-type">
+                Type : <?php echo esc_html(get_post_meta(get_the_ID(), 'Type', true)); ?>
+            </p>
 
-            <p class="post-year">Année : <?php echo get_the_time('Y'); ?></p>
-
+            <p class="post-year">
+                Année : <?php echo get_the_time('Y'); ?>
+            </p>
         </div>
 
         <div class="post-image">
-
-            <?php echo get_the_post_thumbnail(get_the_ID(), 'full', array('alt' => get_the_title())); ?>
-
+            <?php echo get_the_post_thumbnail(get_the_ID(), 'full', ['alt' => get_the_title()]); ?>
         </div>
-
     </div>
 
     <div class="post-contact">
-
         <p>Cette photo vous intéresse ?</p>
-
-        <li id="menu-item-x"><a href="#modale" id="contact-button">Contact</a></li>
-
+        <li id="menu-item-x">
+            <a href="#modale" id="contact-button">Contact</a>
+        </li>
     </div>
-
-
-
-
-
-
 
     <div class="post-nav">
         <?php
@@ -82,39 +75,33 @@ get_header();
                 <?php if ($prev_post) : ?>
                     <div class="nav-item">
                         <a href="<?php echo get_permalink($prev_post); ?>">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/previous_arrow_single_post.svg" alt="Précédent">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/previous_arrow_single_post.svg" 
+                                 alt="Précédent">
                         </a>
-                        <div class="nav-thumbnail" style="background-image: url('<?php echo get_the_post_thumbnail_url($prev_post->ID, 'medium'); ?>');"></div>
+                        <div class="nav-thumbnail" 
+                             style="background-image: url('<?php echo get_the_post_thumbnail_url($prev_post->ID, 'medium'); ?>');">
+                        </div>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($next_post) : ?>
                     <div class="nav-item">
                         <a href="<?php echo get_permalink($next_post); ?>">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/next_arrow_single_post.svg" alt="Suivant">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/next_arrow_single_post.svg" 
+                                 alt="Suivant">
                         </a>
-                        <div class="nav-thumbnail next" style="background-image: url('<?php echo get_the_post_thumbnail_url($next_post->ID, 'medium'); ?>');"></div>
+                        <div class="nav-thumbnail next" 
+                             style="background-image: url('<?php echo get_the_post_thumbnail_url($next_post->ID, 'medium'); ?>');">
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="traitNoir"></div>
 
     <div class="post-related">
-
         <h3>Vous aimerez aussi</h3>
 
         <?php
@@ -125,43 +112,4 @@ get_header();
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-get_footer();
-?>
+<?php get_footer(); ?>

@@ -1,4 +1,4 @@
-console.log("connecté script photo !");
+
 (function (window, factory) {
   
   if (typeof define === "function" && define.amd) {
@@ -117,7 +117,7 @@ console.log("connecté script photo !");
     // Ajouter le bouton à l'overlay
     overlay.appendChild(prevButton);
 
-    console.log(prevButton);
+  
 
 
 
@@ -591,7 +591,7 @@ console.log("connecté script photo !");
       var elements = document.querySelectorAll(selector);
 
       if (!elements.length) {
-        console.log("Ups, I can't find the selector \"" + selector + "\".");
+        
         return;
       }
 
@@ -604,7 +604,7 @@ console.log("connecté script photo !");
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
-console.log("logo fullscreen créé");
+
 
 
 
@@ -613,11 +613,11 @@ console.log("logo fullscreen créé");
 
           // Attacher un gestionnaire d'événement "click" au logo "+"
           lightboxZoom.addEventListener("click", function (event) {
-            console.log("événement lancé");
+            
             event.preventDefault(); // Empêche l'action par défaut
             event.stopPropagation(); // Empêche le clic de se propager au lien parent
             openOverlay(index); // Ouvre la lightbox pour cet élément
-            console.log("lightbox lancée");
+           
           });
 
           // Ajouter le logo "+" à l'élément
@@ -694,10 +694,6 @@ function initializePhotoAnimations() {
           const eyeIcon = photosDiv.querySelector(".eye-icon");
           const postInfo = photosDiv.querySelector(".post-info");
 
-          console.log('Vérification des éléments pour ', photosDiv);
-          console.log('lightbox-zoom:', lightboxZoom ? 'OK' : 'Manquant');
-          console.log('eye-icon:', eyeIcon ? 'OK' : 'Manquant');
-          console.log('post-info:', postInfo ? 'OK' : 'Manquant');
 
           photosDiv.addEventListener("mouseover", () => {
               lightboxZoom?.classList.add("logo_reveal");
@@ -715,7 +711,7 @@ function initializePhotoAnimations() {
       }
   });
 
-  console.log("Animations et fonctionnalités réinitialisées");
+  
 }
 
 // Exécuter au chargement initial

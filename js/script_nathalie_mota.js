@@ -1,8 +1,4 @@
-console.log("connecté!!!!!!!!!!!");
-
-
 // Function des filtres
-
 document.addEventListener('DOMContentLoaded', function () {
     let postsPerPage = 8; // Nombre de posts chargés par clic
     let offset = document.querySelectorAll('#related-photos a').length; // Nombre initial de posts affichés
@@ -23,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
             offset = 0; // Réinitialiser l'offset quand on applique un filtre
         }
 
-        console.log(`Chargement des posts - Offset: ${offset}, Nombre de posts: ${postsPerPage}`);
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', wp_data.ajax_url, true);
@@ -48,21 +43,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 initializePhotoAnimations();
 
                 if (typeof window.lightbox === 'function') {
-                    console.log('Réinitialisation de la lightbox après AJAX');
+                    
 
                     window.lightbox('.lightbox');
                 } else {
-                    console.error('La lightbox n\'est pas disponible après AJAX.');
+                    
                 }
 
                 if (xhr.responseText.trim() === '<p>Aucun résultat trouvé.</p>') {
                     loadMoreButton.style.display = 'none';
-                    console.log("Plus de posts à charger !");
+                    
                 } else {
                     loadMoreButton.style.display = 'block';
                 }
             } else {
-                console.error("Erreur lors du chargement des articles.");
+                
             }
         };
 
@@ -135,7 +130,7 @@ if (menuLink && popup) {
     menuLink.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        console.log("bouton clicked");
+        
     });
 
     // Fermer la modale si on clique en dehors d'elle
@@ -153,7 +148,7 @@ if (boutonContactSingle) {
     boutonContactSingle.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        console.log("bouton clicked mameness");
+        
     });
 
 }
@@ -165,7 +160,7 @@ if (boutonContactMobile) {
     boutonContactMobile.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        console.log("bouton clicked mameness");
+        
     });
 
 }
@@ -182,7 +177,7 @@ if (boutonContactMobile) {
 
 // Stocke le logo burger du header mobile
 const burger1 = document.querySelector('.logo_burger1');
-console.log(burger1);
+
 
 // Stocke le logo burger du menu déroulé à fond rouge
 const burger2 = document.querySelector('.logo_burger2');
@@ -192,7 +187,7 @@ const menuMobile = document.querySelector('.modal');
 
 // Logique d'apparition du menu déroulant
 burger1.addEventListener('click', () => {
-    console.log(burger1);
+    
     menuMobile.classList.toggle('changeMenuMobile');
 });
 
@@ -224,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.classList.toggle('show');
         });
     } else {
-        console.warn('Element #menu-item-x non trouvé dans le DOM');
+        
     }
 });
 
@@ -241,7 +236,7 @@ function updateCaptions() {
 
     // Vérifier si le nombre de post-data correspond au nombre de figures
     if (postDataElements.length !== figures.length) {
-      console.warn(`Mismatch detected: ${postDataElements.length} .post-data elements but ${figures.length} figures found.`);
+      
     }
 
     // Parcourir chaque élément .post-data pour récupérer les données
@@ -277,10 +272,9 @@ function updateCaptions() {
         // Ajouter le figcaption au figure correspondant
         figure.appendChild(figcaption);
 
-        // Afficher dans la console les données pour vérification
-        console.log("choupette...");
+        
       } else {
-        console.warn(`No figure found for post-data at index ${index}`);
+        
       }
     });
 
@@ -289,7 +283,7 @@ function updateCaptions() {
       var lastFigure = figures[figures.length - 1];
       var lastPostData = postDataElements[postDataElements.length - 1];
       if (lastFigure && lastPostData) {
-        console.warn("Processing last figure manually.");
+        
 
         // Supprimer l'ancien figcaption s'il existe
         var existingFigcaption = lastFigure.querySelector("figcaption");
@@ -305,7 +299,7 @@ function updateCaptions() {
 
         
       } else {
-        console.error("Failed to process last figure or last post-data.");
+        
       }
     }
   }

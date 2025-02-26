@@ -9,7 +9,7 @@
             <div>
                 <?php the_content(); ?> <!-- Affiche le contenu ajouté avec le Block Editor -->
             </div>
-        <?php endwhile;
+    <?php endwhile;
     endif;
     ?>
 </main>
