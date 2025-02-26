@@ -146,7 +146,6 @@ function filter_photos_ajax()
                 <div class="detail-eye">
                     <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />
                 </div>
-            
             </a>
 
 

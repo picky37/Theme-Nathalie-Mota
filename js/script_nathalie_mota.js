@@ -34,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (reset) {
                     relatedPhotos.innerHTML = xhr.responseText; // Remplace les posts si un filtre est appliqué
                     offset = document.querySelectorAll('#related-photos a').length; // Réajuster l'offset
+            
                 } else {
+
+
+
+
 
                     relatedPhotos.insertAdjacentHTML('beforeend', xhr.responseText); // Ajoute les nouveaux posts
                     offset += postsPerPage; // Incrémenter l'offset après ajout
@@ -81,12 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-
-
-
-
-
 
 
 
@@ -228,3 +227,85 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Element #menu-item-x non trouvé dans le DOM');
     }
 });
+
+
+
+function updateCaptions() {
+
+         
+    // Récupérer tous les éléments .post-data
+    var postDataElements = document.querySelectorAll('.post-data');
+
+    // Récupérer tous les éléments figure
+    var figures = document.querySelectorAll("figure");
+
+    // Vérifier si le nombre de post-data correspond au nombre de figures
+    if (postDataElements.length !== figures.length) {
+      console.warn(`Mismatch detected: ${postDataElements.length} .post-data elements but ${figures.length} figures found.`);
+    }
+
+    // Parcourir chaque élément .post-data pour récupérer les données
+    postDataElements.forEach((postData, index) => {
+      // Vérifier si un figure correspondant existe
+      var figure = figures[index];
+      if (figure) {
+        // Supprimer l'ancien figcaption s'il existe
+        var existingFigcaption = figure.querySelector("figcaption");
+        if (existingFigcaption) {
+          figure.removeChild(existingFigcaption);
+        }
+
+        // Récupérer les données
+        var reference = postData.getAttribute('data-reference') || "Référence non disponible";
+        var category = postData.getAttribute('data-category') || "Catégorie non disponible";
+
+        // Créer un nouveau figcaption
+        var figcaption = document.createElement("figcaption");
+
+        // Ajouter la référence
+        var referenceDiv = document.createElement("div");
+        referenceDiv.className = "reference";
+        referenceDiv.textContent = reference;
+        figcaption.appendChild(referenceDiv);
+
+        // Ajouter la catégorie
+        var categoryDiv = document.createElement("div");
+        categoryDiv.className = "category";
+        categoryDiv.textContent = category;
+        figcaption.appendChild(categoryDiv);
+
+        // Ajouter le figcaption au figure correspondant
+        figure.appendChild(figcaption);
+
+        // Afficher dans la console les données pour vérification
+        console.log("choupette...");
+      } else {
+        console.warn(`No figure found for post-data at index ${index}`);
+      }
+    });
+
+    // Vérifier et traiter manuellement la dernière image si nécessaire
+    if (figures.length > postDataElements.length) {
+      var lastFigure = figures[figures.length - 1];
+      var lastPostData = postDataElements[postDataElements.length - 1];
+      if (lastFigure && lastPostData) {
+        console.warn("Processing last figure manually.");
+
+        // Supprimer l'ancien figcaption s'il existe
+        var existingFigcaption = lastFigure.querySelector("figcaption");
+        if (existingFigcaption) {
+          lastFigure.removeChild(existingFigcaption);
+        }
+
+        
+
+    
+
+      
+
+        
+      } else {
+        console.error("Failed to process last figure or last post-data.");
+      }
+    }
+  }
