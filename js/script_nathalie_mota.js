@@ -1,10 +1,9 @@
-// Function des filtres
+// Fonction des filtres
 document.addEventListener('DOMContentLoaded', function () {
     let postsPerPage = 8; // Nombre de posts chargés par clic
     let offset = document.querySelectorAll('#related-photos a').length; // Nombre initial de posts affichés
     const loadMoreButton = document.getElementById('load-more');
     const relatedPhotos = document.getElementById('related-photos');
-
     const taxonomyFilter = document.getElementById('taxonomy-filter');
     const categorieFilter = document.getElementById('categorie-filter');
     const dateFilter = document.getElementById('date-sort');
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
             offset = 0; // Réinitialiser l'offset quand on applique un filtre
         }
 
-
         const xhr = new XMLHttpRequest();
         xhr.open('POST', wp_data.ajax_url, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -29,13 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (reset) {
                     relatedPhotos.innerHTML = xhr.responseText; // Remplace les posts si un filtre est appliqué
                     offset = document.querySelectorAll('#related-photos a').length; // Réajuster l'offset
-            
                 } else {
-
-
-
-
-
                     relatedPhotos.insertAdjacentHTML('beforeend', xhr.responseText); // Ajoute les nouveaux posts
                     offset += postsPerPage; // Incrémenter l'offset après ajout
                 }
@@ -43,8 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 initializePhotoAnimations();
 
                 if (typeof window.lightbox === 'function') {
-                    
-
                     window.lightbox('.lightbox');
                 } else {
                     
@@ -82,44 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Sélectionne les éléments
 const menuLink = document.getElementById("menu-item-26"); // Bouton pour ouvrir la modale
 const popup = document.getElementById("modale_container"); // La modale elle-même
@@ -144,13 +96,10 @@ if (menuLink && popup) {
 const boutonContactSingle = document.getElementById("contact-button");
 
 if (boutonContactSingle) {
-
     boutonContactSingle.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        
     });
-
 }
 
 const boutonContactMobile = document.querySelector('#menu-menu-2 > li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-26');
@@ -160,24 +109,11 @@ if (boutonContactMobile) {
     boutonContactMobile.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        
     });
-
 }
-
-
-
-
-
-
-
-
-
-
 
 // Stocke le logo burger du header mobile
 const burger1 = document.querySelector('.logo_burger1');
-
 
 // Stocke le logo burger du menu déroulé à fond rouge
 const burger2 = document.querySelector('.logo_burger2');
@@ -187,7 +123,6 @@ const menuMobile = document.querySelector('.modal');
 
 // Logique d'apparition du menu déroulant
 burger1.addEventListener('click', () => {
-    
     menuMobile.classList.toggle('changeMenuMobile');
 });
 
@@ -210,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const menuLinkSingle = document.getElementById('menu-item-x');
 
@@ -223,21 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 function updateCaptions() {
-
-         
     // Récupérer tous les éléments .post-data
     var postDataElements = document.querySelectorAll('.post-data');
 
     // Récupérer tous les éléments figure
     var figures = document.querySelectorAll("figure");
-
-    // Vérifier si le nombre de post-data correspond au nombre de figures
-    if (postDataElements.length !== figures.length) {
-      
-    }
 
     // Parcourir chaque élément .post-data pour récupérer les données
     postDataElements.forEach((postData, index) => {
@@ -272,7 +197,6 @@ function updateCaptions() {
         // Ajouter le figcaption au figure correspondant
         figure.appendChild(figcaption);
 
-        
       } else {
         
       }
@@ -284,22 +208,41 @@ function updateCaptions() {
       var lastPostData = postDataElements[postDataElements.length - 1];
       if (lastFigure && lastPostData) {
         
-
         // Supprimer l'ancien figcaption s'il existe
         var existingFigcaption = lastFigure.querySelector("figcaption");
         if (existingFigcaption) {
           lastFigure.removeChild(existingFigcaption);
         }
-
-        
-
-    
-
-      
-
-        
       } else {
-        
       }
     }
   }
+
+  function initializePhotoAnimations() {
+    const photosDivs = document.querySelectorAll(".lightbox");
+  
+    photosDivs.forEach((photosDiv) => {
+        if (!photosDiv.dataset.eventAttached) {
+            const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
+            const eyeIcon = photosDiv.querySelector(".eye-icon");
+            const postInfo = photosDiv.querySelector(".post-info");
+  
+            photosDiv.addEventListener("mouseover", () => {
+                lightboxZoom?.classList.add("logo_reveal");
+                eyeIcon?.classList.add("logo_reveal");
+                postInfo?.classList.add("logo_reveal");
+            });
+  
+            photosDiv.addEventListener("mouseout", () => {
+                lightboxZoom?.classList.remove("logo_reveal");
+                eyeIcon?.classList.remove("logo_reveal");
+                postInfo?.classList.remove("logo_reveal");
+            });
+  
+            photosDiv.dataset.eventAttached = "true";
+        }
+    });
+  }
+  
+  // Exécuter au chargement initial
+  document.addEventListener("DOMContentLoaded", initializePhotoAnimations);

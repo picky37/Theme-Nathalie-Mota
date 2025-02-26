@@ -1,4 +1,3 @@
-
 (function (window, factory) {
   
   if (typeof define === "function" && define.amd) {
@@ -116,11 +115,6 @@
 
     // Ajouter le bouton à l'overlay
     overlay.appendChild(prevButton);
-
-  
-
-
-
 
     var nextButton = document.createElement("button");
     nextButton.setAttribute("type", "button");
@@ -274,18 +268,8 @@
         sliderElement[i].classList.add("lightbox-content");
         sliderElement[i].id = "lightbox-content-" + i;
 
+////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-        ////////////////////////////////////////////////////////////////////////////
         // Create figure
         var figure = document.createElement("figure");
         figure.innerHTML = "<div class=\"lightbox-loader\"></div>";
@@ -312,41 +296,13 @@
         // Create figcaption
         var figcaption = document.createElement("figcaption");
 
-
-        
-
-
-       
-
         // Exécuter après le chargement du DOM
         document.addEventListener("DOMContentLoaded", updateCaptions);
-
-
-
-
-
-
-
 
         // Add figcaption to the figure
         figure.appendChild(figcaption);
 
-
-        //////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+//////////////////////////////////////////////////////////////////////////////////////////
 
         // Add figure to slider element
         sliderElement[i].appendChild(figure);
@@ -604,14 +560,10 @@
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
-
-
-
-
           detailEye.classList.add("detail-eye");
           detailEye.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />'
 
-          // Attacher un gestionnaire d'événement "click" au logo "+"
+          // Attacher un gestionnaire d'événement "click" au logo "fullscreen"
           lightboxZoom.addEventListener("click", function (event) {
             
             event.preventDefault(); // Empêche l'action par défaut
@@ -620,7 +572,6 @@
            
           });
 
-          // Ajouter le logo "+" à l'élément
           element.appendChild(lightboxZoom);
           element.appendChild(detailEye);
         }
@@ -647,8 +598,6 @@
       createOverlay();
     };
 
-
-
     setup(selector, userOptions);
   };
 
@@ -656,7 +605,6 @@
 
   
 }));
-
 
 lightbox('.lightbox', {
   captions: true,
@@ -677,44 +625,3 @@ lightbox('.lightbox', {
   swipeClose: true,
   scroll: false
 });
-
-
-
-
-
-
-
-
-function initializePhotoAnimations() {
-  const photosDivs = document.querySelectorAll(".lightbox");
-
-  photosDivs.forEach((photosDiv) => {
-      if (!photosDiv.dataset.eventAttached) {
-          const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
-          const eyeIcon = photosDiv.querySelector(".eye-icon");
-          const postInfo = photosDiv.querySelector(".post-info");
-
-
-          photosDiv.addEventListener("mouseover", () => {
-              lightboxZoom?.classList.add("logo_reveal");
-              eyeIcon?.classList.add("logo_reveal");
-              postInfo?.classList.add("logo_reveal");
-          });
-
-          photosDiv.addEventListener("mouseout", () => {
-              lightboxZoom?.classList.remove("logo_reveal");
-              eyeIcon?.classList.remove("logo_reveal");
-              postInfo?.classList.remove("logo_reveal");
-          });
-
-          photosDiv.dataset.eventAttached = "true";
-      }
-  });
-
-  
-}
-
-// Exécuter au chargement initial
-document.addEventListener("DOMContentLoaded", initializePhotoAnimations);
-
-

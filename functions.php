@@ -15,7 +15,8 @@
 
 // Fonction combinée pour enregistrer les scripts et les styles
 function enregistrer_scripts_et_styles_nathalie_mota()
-{
+
+    {
     // Enregistrer les scripts
     wp_enqueue_script(
         'script_nathalie_mota',
@@ -43,7 +44,7 @@ function enregistrer_scripts_et_styles_nathalie_mota()
 
     // Enregistrer le style
     wp_enqueue_style('style_nathalie_mota', get_stylesheet_uri());
-}
+    }
 
 add_action('wp_enqueue_scripts', 'enregistrer_scripts_et_styles_nathalie_mota');
 
@@ -54,7 +55,7 @@ define('THEME_URI', get_template_directory_uri());
  * Filtrer les photos via AJAX
  */
 function filter_photos_ajax()
-{
+    {
     $format         = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie      = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $date_order     = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC';
@@ -95,7 +96,7 @@ function filter_photos_ajax()
         while ($query->have_posts()) {
             $query->the_post();
             $full_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-?>
+    ?>
             <a href="<?php echo esc_url($full_image_url); ?>"
                 class="lightbox"
                 data-post-link="<?php echo esc_url(get_permalink()); ?>">
@@ -136,7 +137,7 @@ function filter_photos_ajax()
                 data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>"
                 data-date="<?php echo esc_attr(get_the_date('Y-m-d H:i:s')); ?>">
             </div>
-<?php
+    <?php
         }
     } else {
         echo '<p>Aucun résultat trouvé.</p>';
