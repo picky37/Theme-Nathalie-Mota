@@ -1,4 +1,3 @@
-// Fonction des filtres
 document.addEventListener('DOMContentLoaded', function () {
     let postsPerPage = 8; // Nombre de posts chargés par clic
     let offset = document.querySelectorAll('#related-photos a').length; // Nombre initial de posts affichés
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const dateFilter = document.getElementById('date-sort');
 
     function fetchPosts(reset = true) {
-
         const date = dateFilter ? dateFilter.value : 'desc';
         const format = taxonomyFilter ? taxonomyFilter.value : '';
         const categorie = categorieFilter ? categorieFilter.value : '';
@@ -32,22 +30,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     offset += postsPerPage; // Incrémenter l'offset après ajout
                 }
 
+                // Toujours mettre à jour les légendes et animations après AJAX
+                updateCaptions(); 
                 initializePhotoAnimations();
 
                 if (typeof window.lightbox === 'function') {
                     window.lightbox('.lightbox');
-                } else {
-                    
                 }
 
                 if (xhr.responseText.trim() === '<p>Aucun résultat trouvé.</p>') {
                     loadMoreButton.style.display = 'none';
-                    
                 } else {
                     loadMoreButton.style.display = 'block';
                 }
-            } else {
-                
             }
         };
 
@@ -67,10 +62,76 @@ document.addEventListener('DOMContentLoaded', function () {
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', function () {
             fetchPosts(false);
-
         });
     }
 });
+
+// ✅ Met à jour les légendes sous les images chargées
+function updateCaptions() {
+    const postDataElements = document.querySelectorAll('.post-data');
+    const figures = document.querySelectorAll("figure");
+
+    postDataElements.forEach((postData, index) => {
+        let figure = figures[index];
+        if (figure) {
+            let existingFigcaption = figure.querySelector("figcaption");
+            if (existingFigcaption) {
+                figure.removeChild(existingFigcaption);
+            }
+
+            let reference = postData.getAttribute('data-reference') || "Référence non disponible";
+            let category = postData.getAttribute('data-category') || "Catégorie non disponible";
+
+            let figcaption = document.createElement("figcaption");
+
+            let referenceDiv = document.createElement("div");
+            referenceDiv.className = "reference";
+            referenceDiv.textContent = reference;
+            figcaption.appendChild(referenceDiv);
+
+            let categoryDiv = document.createElement("div");
+            categoryDiv.className = "category";
+            categoryDiv.textContent = category;
+            figcaption.appendChild(categoryDiv);
+
+            figure.appendChild(figcaption);
+        }
+    });
+}
+
+// ✅ Active les animations sur les nouveaux posts AJAX
+function initializePhotoAnimations() {
+    document.querySelectorAll(".lightbox").forEach((photosDiv) => {
+        if (!photosDiv.dataset.eventAttached) {
+            const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
+            const eyeIcon = photosDiv.querySelector(".eye-icon");
+            const postInfo = photosDiv.querySelector(".post-info");
+
+            photosDiv.addEventListener("mouseover", () => {
+                lightboxZoom?.classList.add("logo_reveal");
+                eyeIcon?.classList.add("logo_reveal");
+                postInfo?.classList.add("logo_reveal");
+            });
+
+            photosDiv.addEventListener("mouseout", () => {
+                lightboxZoom?.classList.remove("logo_reveal");
+                eyeIcon?.classList.remove("logo_reveal");
+                postInfo?.classList.remove("logo_reveal");
+            });
+
+            photosDiv.dataset.eventAttached = "true";
+        }
+    });
+}
+
+// Exécuter au chargement initial
+document.addEventListener("DOMContentLoaded", () => {
+    initializePhotoAnimations();
+    updateCaptions();
+});
+
+
+
 
 // Sélectionne les éléments
 const menuLink = document.getElementById("menu-item-26"); // Bouton pour ouvrir la modale
@@ -82,7 +143,6 @@ if (menuLink && popup) {
     menuLink.addEventListener("click", (event) => {
         event.stopPropagation(); // Empêche la propagation pour éviter la fermeture immédiate
         popup.classList.toggle("show");
-        
     });
 
     // Fermer la modale si on clique en dehors d'elle
@@ -246,3 +306,4 @@ function updateCaptions() {
   
   // Exécuter au chargement initial
   document.addEventListener("DOMContentLoaded", initializePhotoAnimations);
+  document.addEventListener("DOMContentLoaded", updateCaptions);

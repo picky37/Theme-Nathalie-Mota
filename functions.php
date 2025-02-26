@@ -70,7 +70,7 @@ function filter_photos_ajax()
         'posts_per_page' => $posts_per_page,
         'orderby'        => 'post_date',
         'order'          => $date_order,
-        'offset'         => $offset, // Appliquer l'offset
+        'offset'         => $offset,
         'tax_query'      => [],
     ];
 
