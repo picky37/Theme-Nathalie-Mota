@@ -70,7 +70,7 @@
             </select>
 
             <!-- Filtre | Trier par date -->
-            <label for="date-sort"></label>
+            <!-- <label for="date-sort"></label> -->
             <select name="date-sort" id="date-sort">
                 <option value="ALL">TRIER PAR</option>
                 <option value="DESC">Du plus récent au plus ancien</option>

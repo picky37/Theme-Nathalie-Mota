@@ -330,8 +330,8 @@ footer {
 
 .post-image img {
   max-width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 100%;
 }
 
@@ -432,6 +432,7 @@ footer {
 }
 
 .photos-apparentees img {
+  max-width: 564px;
   width: 564px;
   height: 495px;
   /* Chaque image prend toute la largeur disponible */
@@ -692,6 +693,7 @@ footer {
   display: flex;
   justify-content: space-between;
   max-width: 1148px;
+  width: 95%;
   gap: 130px;
 }
 
@@ -729,7 +731,7 @@ footer {
   border: solid 1px #D8D8D8 !important;
   border-radius: 8px !important;
   height: 42px;
-  width: 260px;
+  width: 350px;
   background: url("http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/arrow_filters.svg") no-repeat calc(100% - 10px) center;
   background-color: white;
 }
@@ -806,4 +808,16 @@ footer {
   font-family: "SpaceMonoRegular";
   font-size: 1.125rem;
   padding-left: 40px;
+}
+
+@media (max-width: 796px) {
+  #taxonomy-filter,
+  #categorie-filter,
+  #date-sort {
+    height: 60px;
+    width: 350px;
+  }
+  .photo-filters {
+    gap: 50px;
+  }
 }/*# sourceMappingURL=style.css.map */
