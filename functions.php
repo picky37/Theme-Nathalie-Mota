@@ -31,6 +31,7 @@ function enregistrer_scripts_et_styles_nathalie_mota()
         'wp_data', // Nom de l'objet JavaScript à exposer
         [
             'ajax_url' => admin_url('admin-ajax.php'), // URL de admin-ajax.php
+            'nonce'   => wp_create_nonce('mon_action_nonce')
         ]
     );
 
@@ -56,6 +57,12 @@ define('THEME_URI', get_template_directory_uri());
  */
 function filter_photos_ajax()
     {
+         // Vérification du nonce pour protéger contre les attaques CSRF
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'mon_action_nonce')) {
+        wp_send_json_error(['message' => 'Requête non autorisée. Le dev a intégré un nonce :)'], 403);
+        wp_die();
+    }
+
     $format         = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie      = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $date_order     = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : 'DESC';

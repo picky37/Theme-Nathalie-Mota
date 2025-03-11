@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        const params = `action=filter_photos&posts_per_page=${encodeURIComponent(postsPerPage)}&offset=${encodeURIComponent(offset)}&date=${encodeURIComponent(date)}&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
+        const params = `action=filter_photos&security=${encodeURIComponent(wp_data.nonce)}&posts_per_page=${encodeURIComponent(postsPerPage)}&offset=${encodeURIComponent(offset)}&date=${encodeURIComponent(date)}&format=${encodeURIComponent(format)}&categorie=${encodeURIComponent(categorie)}`;
         xhr.send(params);
     }
 
