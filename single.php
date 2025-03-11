@@ -107,6 +107,7 @@
         <?php
         $number_of_photos = 2;
         $myOrderby = "rand";
+        $filter_by_category = true;
         include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';
         ?>
     </div>

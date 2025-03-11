@@ -82,6 +82,7 @@
     <?php
     $number_of_photos = 8;
     $myOrderby = "DESC";
+    $filter_by_category = false;
 
     include 'wp-content/themes/Theme-Nathalie-Mota/template_parts/photo_block.php';
     ?>

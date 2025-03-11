@@ -5,6 +5,24 @@
         'posts_per_page' => $number_of_photos,
         'orderby'        => $myOrderby,
     );
+
+    // Si on doit filtrer par la même catégorie, on ajoute une tax_query
+if ($filter_by_category) {
+    $terms = get_the_terms(get_the_ID(), 'categorie');
+    if ($terms && !is_wp_error($terms)) {
+        $term_ids = wp_list_pluck($terms, 'term_id'); // Récupère les IDs des catégories
+
+        $related_args['tax_query'] = [
+            [
+                'taxonomy' => 'categorie',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+                'operator' => 'IN',
+            ]
+        ];
+    }
+}
+
     $related_query = new WP_Query($related_args);
 
     if ($related_query->have_posts()) :
