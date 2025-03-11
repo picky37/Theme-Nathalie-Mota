@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const categorieFilter = document.getElementById('categorie-filter');
     const dateFilter = document.getElementById('date-sort');
 
+
+
     function fetchPosts(reset = true) {
         const date = dateFilter ? dateFilter.value : 'desc';
         const format = taxonomyFilter ? taxonomyFilter.value : '';
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Toujours mettre à jour les légendes et animations après AJAX
-                updateCaptions(); 
+                setTimeout(updateCaptions, 100);
                 initializePhotoAnimations();
 
                 if (typeof window.lightbox === 'function') {
@@ -71,6 +73,9 @@ function updateCaptions() {
     const postDataElements = document.querySelectorAll('.post-data');
     const figures = document.querySelectorAll("figure");
 
+    console.log(postDataElements, figures);
+
+
     postDataElements.forEach((postData, index) => {
         let figure = figures[index];
         if (figure) {
@@ -95,6 +100,10 @@ function updateCaptions() {
             figcaption.appendChild(categoryDiv);
 
             figure.appendChild(figcaption);
+
+            console.log("✅ Figcaption ajouté à :", figure, figcaption);
+
+
         }
     });
 }
@@ -213,97 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.classList.toggle('show');
         });
     } else {
-        
+
     }
 });
-
-function updateCaptions() {
-    // Récupérer tous les éléments .post-data
-    var postDataElements = document.querySelectorAll('.post-data');
-
-    // Récupérer tous les éléments figure
-    var figures = document.querySelectorAll("figure");
-
-    // Parcourir chaque élément .post-data pour récupérer les données
-    postDataElements.forEach((postData, index) => {
-      // Vérifier si un figure correspondant existe
-      var figure = figures[index];
-      if (figure) {
-        // Supprimer l'ancien figcaption s'il existe
-        var existingFigcaption = figure.querySelector("figcaption");
-        if (existingFigcaption) {
-          figure.removeChild(existingFigcaption);
-        }
-
-        // Récupérer les données
-        var reference = postData.getAttribute('data-reference') || "Référence non disponible";
-        var category = postData.getAttribute('data-category') || "Catégorie non disponible";
-
-        // Créer un nouveau figcaption
-        var figcaption = document.createElement("figcaption");
-
-        // Ajouter la référence
-        var referenceDiv = document.createElement("div");
-        referenceDiv.className = "reference";
-        referenceDiv.textContent = reference;
-        figcaption.appendChild(referenceDiv);
-
-        // Ajouter la catégorie
-        var categoryDiv = document.createElement("div");
-        categoryDiv.className = "category";
-        categoryDiv.textContent = category;
-        figcaption.appendChild(categoryDiv);
-
-        // Ajouter le figcaption au figure correspondant
-        figure.appendChild(figcaption);
-
-      } else {
-        
-      }
-    });
-
-    // Vérifier et traiter manuellement la dernière image si nécessaire
-    if (figures.length > postDataElements.length) {
-      var lastFigure = figures[figures.length - 1];
-      var lastPostData = postDataElements[postDataElements.length - 1];
-      if (lastFigure && lastPostData) {
-        
-        // Supprimer l'ancien figcaption s'il existe
-        var existingFigcaption = lastFigure.querySelector("figcaption");
-        if (existingFigcaption) {
-          lastFigure.removeChild(existingFigcaption);
-        }
-      } else {
-      }
-    }
-  }
-
-  function initializePhotoAnimations() {
-    const photosDivs = document.querySelectorAll(".lightbox");
-  
-    photosDivs.forEach((photosDiv) => {
-        if (!photosDiv.dataset.eventAttached) {
-            const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
-            const eyeIcon = photosDiv.querySelector(".eye-icon");
-            const postInfo = photosDiv.querySelector(".post-info");
-  
-            photosDiv.addEventListener("mouseover", () => {
-                lightboxZoom?.classList.add("logo_reveal");
-                eyeIcon?.classList.add("logo_reveal");
-                postInfo?.classList.add("logo_reveal");
-            });
-  
-            photosDiv.addEventListener("mouseout", () => {
-                lightboxZoom?.classList.remove("logo_reveal");
-                eyeIcon?.classList.remove("logo_reveal");
-                postInfo?.classList.remove("logo_reveal");
-            });
-  
-            photosDiv.dataset.eventAttached = "true";
-        }
-    });
-  }
-  
-  // Exécuter au chargement initial
-  document.addEventListener("DOMContentLoaded", initializePhotoAnimations);
-  document.addEventListener("DOMContentLoaded", updateCaptions);

@@ -263,11 +263,14 @@
         figcaption = null,
         figcaptionsIds = [];
 
+      console.log(galleryLength);
+      
+      document.querySelectorAll('.lightbox-content figure').forEach(e => e.remove())
+      
       for (; i < galleryLength; ++i) {
         sliderElement[i] = document.createElement("div");
         sliderElement[i].classList.add("lightbox-content");
-        sliderElement[i].id = "lightbox-content-" + i;
-
+        sliderElement[i].id = "lightbox-content-" + i
 ////////////////////////////////////////////////////////////////////////////
 
         // Create figure
@@ -296,9 +299,6 @@
         // Create figcaption
         var figcaption = document.createElement("figcaption");
 
-        // Exécuter après le chargement du DOM
-        document.addEventListener("DOMContentLoaded", updateCaptions);
-
         // Add figcaption to the figure
         figure.appendChild(figcaption);
 
@@ -315,14 +315,14 @@
         overlay.setAttribute("aria-labelledby", figuresIds.join(" "));
         overlay.setAttribute("aria-describedby", figcaptionsIds.join(" "));
       }
-
+      prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
+      nextButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/next_arrow.svg" alt="Next Arrow"/>';
       // Hide buttons if necessary
       if (!options.nav || galleryLength === 1 || (options.nav === "auto" && "ontouchstart" in window)) {
-        prevButton.style.display = "none";
-        nextButton.style.display = "none";
+        // prevButton.style.display = "none";
+        // nextButton.style.display = "none";
       } else {
-        prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
-        nextButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/next_arrow.svg" alt="Next Arrow"/>';
+        
       }
 
       // Hide counter if necessary
