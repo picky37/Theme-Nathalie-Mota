@@ -111,12 +111,13 @@ function updateCaptions() {
 
 // ✅ Active les animations sur les nouveaux posts AJAX
 function initializePhotoAnimations() {
+    
     document.querySelectorAll(".lightbox").forEach((photosDiv) => {
         if (!photosDiv.dataset.eventAttached) {
             const lightboxZoom = photosDiv.querySelector(".lightbox-zoom");
             const eyeIcon = photosDiv.querySelector(".eye-icon");
             const postInfo = photosDiv.querySelector(".post-info");
-
+            
             photosDiv.addEventListener("mouseover", () => {
                 lightboxZoom?.classList.add("logo_reveal");
                 eyeIcon?.classList.add("logo_reveal");
