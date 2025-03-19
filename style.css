@@ -13,8 +13,9 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
   padding: 0;
 }
 
-html {
+html, body {
   font-size: 100%;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -474,6 +475,7 @@ footer {
   text-decoration: none;
   z-index: 1;
   height: 495px;
+  display: flex;
 }
 
 .logo_reveal {
@@ -764,6 +766,17 @@ footer {
   .post-related h3 {
     font-size: 1rem;
     margin-bottom: 20px;
+  }
+  .lightbox {
+    display: flex;
+    height: auto;
+  }
+  .photos-apparentees img {
+    max-width: 90%;
+    margin: 0 auto;
+    height: -moz-fit-content;
+    height: fit-content;
+    aspect-ratio: 1/1;
   }
 }
 #taxonomy-filter,
