@@ -231,8 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    new SlimSelect({
-        select: '#categorie-filter'
-    });
+    ['#categorie-filter', '#taxonomy-filter', '#date-sort'].forEach(selector => {
+        new SlimSelect({
+          select: selector,
+          settings: {
+            showSearch: false // Désactiver la barre de recherche (optionnel)
+          }
+        });
+      });
     console.log("Slim Select initialisé !");
 });

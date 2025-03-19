@@ -729,8 +729,8 @@ footer {
 #categorie-filter,
 #date-sort {
   border: solid 1px #D8D8D8 !important;
-  border-radius: 8px !important;
-  height: 42px;
+  border-radius: 15px !important;
+  height: 80px;
   width: 350px;
   background: url("http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/arrow_filters.svg") no-repeat calc(100% - 10px) center;
   background-color: white;
@@ -814,22 +814,34 @@ footer {
   #taxonomy-filter,
   #categorie-filter,
   #date-sort {
-    height: 60px;
+    height: 80px;
     width: 350px;
   }
   .photo-filters {
     gap: 50px;
   }
 }
-/* Appliquer un espacement et du style aux options */
-.select2-results__option {
-  padding: 12px 15px;
-  font-size: 16px;
-  color: black;
+/* Ajouter un effet au survol */
+.ss-content .ss-list .ss-option:hover {
+  background-color: #E00000 !important;
+  color: white !important;
 }
 
-/* Modifier l'apparence au survol */
-.select2-results__option--highlighted {
-  background-color: red !important; /* Fond rouge */
-  color: white !important; /* Texte blanc */
+.ss-main .ss-values .ss-single {
+  font-family: "SpaceMonoRegular";
+  padding: 10px 0px 10px 10px;
+}
+
+.ss-main {
+  border-radius: 10px !important;
+  border: solid 2px #D8D8D8 !important;
+}
+
+.ss-content .ss-list .ss-option {
+  padding: 15px 0px 15px 30px;
+  font-family: "SpaceMonoRegular";
+}
+
+.ss-list .ss-option:not(.ss-disabled).ss-selected {
+  background-color: #E00000 !important;
 }/*# sourceMappingURL=style.css.map */
