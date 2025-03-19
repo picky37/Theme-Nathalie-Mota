@@ -8,6 +8,11 @@ Version: 1.0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-size: 100%;
 }
@@ -69,7 +74,7 @@ p {
 }
 
 body {
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
 }
 
 .img_logo {
@@ -112,7 +117,7 @@ body {
   border: 3px solid black;
   transition: opacity 0.3s ease-in-out;
   max-width: 597px;
-  width: 95%;
+  width: 80%;
   opacity: 0;
   pointer-events: none;
 }
@@ -221,9 +226,9 @@ footer {
 /* Code pour le menu mobile */
 .modal {
   background-color: #E00000;
-  height: 100vh;
+  height: 150vh;
   position: fixed;
-  top: -100vh;
+  top: -150vh;
   left: 0;
   width: 100%;
   transition: top 0.9s;
@@ -269,7 +274,7 @@ footer {
   }
   .navbar-mobile-list .menu-menu-1-container {
     display: flex;
-    margin-top: 80%;
+    margin-top: 100%;
   }
 }
 @media (min-width: 769px) {
@@ -282,6 +287,15 @@ footer {
   }
   footer {
     height: 50px !important;
+  }
+}
+@media (max-width: 769px) {
+  footer {
+    flex-direction: column;
+  }
+  .mentionFooter {
+    padding-top: 15px;
+    padding-left: 0px !important;
   }
 }
 .single-post-container {
@@ -304,7 +318,8 @@ footer {
 .post-details {
   flex: 1;
   max-width: 50%;
-  border-bottom: 1px solid black; /* Bordure en bas */
+  border-bottom: 1px solid black;
+  /* Bordure en bas */
 }
 
 .post-title {
@@ -371,6 +386,7 @@ footer {
   display: flex;
   justify-content: center;
   padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 #load-more {
@@ -435,9 +451,7 @@ footer {
   max-width: 564px;
   width: 564px;
   height: 495px;
-  /* Chaque image prend toute la largeur disponible */
   margin-bottom: 20px;
-  /* Espacement vertical entre les images */
   -o-object-fit: cover;
      object-fit: cover;
   gap: 20px;
@@ -520,6 +534,7 @@ footer {
   transition: 0.5s;
   gap: 420px;
   pointer-events: none;
+  max-width: 564px;
 }
 
 /* Overlay */
@@ -706,7 +721,7 @@ footer {
 }
 
 .mesFiltres {
-  padding-top: 60px;
+  padding-top: 100px;
   padding-bottom: 20px;
   display: flex;
   justify-content: center;
@@ -715,7 +730,7 @@ footer {
 @media screen and (max-width: 796px) {
   .photo-filters {
     flex-wrap: wrap;
-    padding-top: 70px;
+    padding-top: 30px;
     padding-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -723,6 +738,32 @@ footer {
   }
   .post-header {
     display: flex;
+    flex-direction: column-reverse;
+  }
+  .mesFiltres {
+    padding-top: 20px;
+  }
+  .post-details,
+  .post-image {
+    max-width: 100%;
+  }
+  .post-title {
+    font-family: "SpaceMonoRegularItalic";
+    font-size: 3rem;
+  }
+  .post-contact {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .post-nav {
+    display: none !important;
+  }
+  .modale_details img {
+    max-width: 100%;
+  }
+  .post-related h3 {
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
 }
 #taxonomy-filter,
@@ -752,7 +793,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 35px; /* Espace fixe entre les flèches */
+  gap: 35px;
+  /* Espace fixe entre les flèches */
   margin-top: 20px;
 }
 
@@ -772,7 +814,8 @@ footer {
 /* Miniature fixe au-dessus des flèches */
 .nav-thumbnail {
   position: absolute;
-  bottom: 120%; /* Ajuste la position pour être au-dessus des flèches */
+  bottom: 120%;
+  /* Ajuste la position pour être au-dessus des flèches */
   width: 80px;
   height: 80px;
   background-size: cover;
@@ -818,7 +861,10 @@ footer {
     width: 350px;
   }
   .photo-filters {
-    gap: 50px;
+    gap: 10px;
+  }
+  .photos-apparentees {
+    padding: 0px;
   }
 }
 /* Ajouter un effet au survol */
@@ -835,6 +881,7 @@ footer {
 .ss-main {
   border-radius: 10px !important;
   border: solid 2px #D8D8D8 !important;
+  width: 70% !important;
 }
 
 .ss-content .ss-list .ss-option {
@@ -844,4 +891,9 @@ footer {
 
 .ss-list .ss-option:not(.ss-disabled).ss-selected {
   background-color: #E00000 !important;
+}
+
+.ss-content.ss-open-below {
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
 }/*# sourceMappingURL=style.css.map */
