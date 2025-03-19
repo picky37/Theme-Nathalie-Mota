@@ -572,8 +572,8 @@ footer {
   transition: 0.5s;
 }
 
-.detail-eye img{
-  margin-right: 100%;
+img.eye-icon{
+  margin-right: 100%!important;
 }
 
 .detail-eye {
@@ -585,6 +585,10 @@ footer {
 .detail-eye img {
   width: 46px;
   height: 31.2px;
+}
+
+.lightbox-zoom img{
+  margin-right: 100%;
 }
 
 .lightbox-no-scroll {
@@ -882,6 +886,20 @@ footer {
     margin: 0 auto;
     height: fit-content;
     aspect-ratio: 1 / 1;
+  }
+
+  img.eye-icon{
+    object-fit: contain;
+  }
+
+  .lightbox-zoom{
+    right: 30px;
+  }
+
+  .post-info{
+    width: 85%;
+    margin-left: 5%;
+    gap: 60%;
   }
 }
 

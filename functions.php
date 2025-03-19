@@ -13,10 +13,11 @@
  * Register block styles.
  */
 
+
 // Fonction combinée pour enregistrer les scripts et les styles
 function enregistrer_scripts_et_styles_nathalie_mota()
 
-    {
+{
     // Enregistrer les scripts
     wp_enqueue_script(
         'script_nathalie_mota',
@@ -43,27 +44,25 @@ function enregistrer_scripts_et_styles_nathalie_mota()
         true
     );
 
-   
+    // Met dans une constante l'URL de la racine du thème
+    define('THEME_URI', get_template_directory_uri());
+
     wp_enqueue_script('slimselect-js', 'https://cdn.jsdelivr.net/npm/slim-select@latest/dist/slimselect.min.js', array(), null, true);
 
     wp_enqueue_style('slimselect-css', 'https://cdn.jsdelivr.net/npm/slim-select@latest/dist/slimselect.css', array(), null);
 
 
     wp_enqueue_style('style_nathalie_mota', get_stylesheet_uri());
-
-    }
+}
 
 add_action('wp_enqueue_scripts', 'enregistrer_scripts_et_styles_nathalie_mota');
-
-// Met dans une constante l'URL de la racine du thème
-define('THEME_URI', get_template_directory_uri());
 
 /**
  * Filtrer les photos via AJAX
  */
 function filter_photos_ajax()
-    {
-         // Vérification du nonce pour protéger contre les attaques CSRF
+{
+    // Vérification du nonce pour protéger contre les attaques CSRF
     if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'mon_action_nonce')) {
         wp_send_json_error(['message' => 'Requête non autorisée. Le dev a intégré un nonce :)'], 403);
         wp_die();
@@ -109,7 +108,7 @@ function filter_photos_ajax()
         while ($query->have_posts()) {
             $query->the_post();
             $full_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-    ?>
+?>
             <a href="<?php echo esc_url($full_image_url); ?>"
                 class="lightbox"
                 data-post-link="<?php echo esc_url(get_permalink()); ?>">
@@ -150,7 +149,7 @@ function filter_photos_ajax()
                 data-category="<?php echo esc_attr(implode(', ', $categories ?? [])); ?>"
                 data-date="<?php echo esc_attr(get_the_date('Y-m-d H:i:s')); ?>">
             </div>
-    <?php
+<?php
         }
     } else {
         echo '<p>Aucun résultat trouvé.</p>';
@@ -161,8 +160,3 @@ function filter_photos_ajax()
 
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
-
-
-
-
-

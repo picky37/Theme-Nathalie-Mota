@@ -1,5 +1,5 @@
 (function (window, factory) {
-  
+
   if (typeof define === "function" && define.amd) {
     // AMD
     define(factory);
@@ -264,14 +264,14 @@
         figcaptionsIds = [];
 
       console.log(galleryLength);
-      
+
       document.querySelectorAll('.lightbox-content figure').forEach(e => e.remove())
-      
+
       for (; i < galleryLength; ++i) {
         sliderElement[i] = document.createElement("div");
         sliderElement[i].classList.add("lightbox-content");
         sliderElement[i].id = "lightbox-content-" + i
-////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
 
         // Create figure
         var figure = document.createElement("figure");
@@ -302,7 +302,7 @@
         // Add figcaption to the figure
         figure.appendChild(figcaption);
 
-//////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////
 
         // Add figure to slider element
         sliderElement[i].appendChild(figure);
@@ -322,7 +322,7 @@
         // prevButton.style.display = "none";
         // nextButton.style.display = "none";
       } else {
-        
+
       }
 
       // Hide counter if necessary
@@ -547,7 +547,7 @@
       var elements = document.querySelectorAll(selector);
 
       if (!elements.length) {
-        
+
         return;
       }
 
@@ -557,19 +557,23 @@
         if (options.zoom && element.getElementsByTagName("img")[0]) {
           var lightboxZoom = document.createElement("div");
           var detailEye = document.createElement("div");
+          let baseUrl = window.location.origin; // Récupère l'URL de base (ex: http://localhost ou https://mon-site.com)
+          let themePath = "/wp-content/themes/Theme-Nathalie-Mota"; // Chemin vers ton thème
 
           lightboxZoom.classList.add("lightbox-zoom");
-          lightboxZoom.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />'
+          lightboxZoom.innerHTML = `<img src="${baseUrl}${themePath}/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />`;
+
           detailEye.classList.add("detail-eye");
-          detailEye.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg" alt="Icône oeuil détail" class="eye-icon" />'
+          detailEye.innerHTML = `<img src="${baseUrl}${themePath}/images/Icon_eye.svg" alt="Icône œil détail" class="eye-icon" />`;
+
 
           // Attacher un gestionnaire d'événement "click" au logo "fullscreen"
           lightboxZoom.addEventListener("click", function (event) {
-            
+
             event.preventDefault(); // Empêche l'action par défaut
             event.stopPropagation(); // Empêche le clic de se propager au lien parent
             openOverlay(index); // Ouvre la lightbox pour cet élément
-           
+
           });
 
           element.appendChild(lightboxZoom);
@@ -603,7 +607,7 @@
 
   return lightbox;
 
-  
+
 }));
 
 lightbox('.lightbox', {
