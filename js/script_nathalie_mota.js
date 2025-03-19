@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const date = dateFilter ? dateFilter.value : 'desc';
         const format = taxonomyFilter ? taxonomyFilter.value : '';
         const categorie = categorieFilter ? categorieFilter.value : '';
+        
 
         if (reset) {
             offset = 0; // Réinitialiser l'offset quand on applique un filtre
@@ -224,4 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
 
     }
+});
+
+/////////////////////////////////////////////////////////////////////
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    new SlimSelect({
+        select: '#categorie-filter'
+    });
+    console.log("Slim Select initialisé !");
 });

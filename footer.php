@@ -3,6 +3,10 @@
     <p class="mentionFooter">TOUS DROITS RÉSERVÉS</p>
 </footer>
 <?php wp_footer(); ?>
+
+
+
+
 </body>
 
 </html>

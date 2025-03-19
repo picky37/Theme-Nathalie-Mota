@@ -926,3 +926,17 @@ footer {
       gap: 50px;
   }
 }
+
+
+/* Appliquer un espacement et du style aux options */
+.select2-results__option {
+  padding: 12px 15px;
+  font-size: 16px;
+  color: black;
+}
+
+/* Modifier l'apparence au survol */
+.select2-results__option--highlighted {
+  background-color: red !important; /* Fond rouge */
+  color: white !important; /* Texte blanc */
+}

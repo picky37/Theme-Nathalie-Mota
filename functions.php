@@ -43,8 +43,14 @@ function enregistrer_scripts_et_styles_nathalie_mota()
         true
     );
 
-    // Enregistrer le style
+   
+    wp_enqueue_script('slimselect-js', 'https://cdn.jsdelivr.net/npm/slim-select@latest/dist/slimselect.min.js', array(), null, true);
+
+    wp_enqueue_style('slimselect-css', 'https://cdn.jsdelivr.net/npm/slim-select@latest/dist/slimselect.css', array(), null);
+
+
     wp_enqueue_style('style_nathalie_mota', get_stylesheet_uri());
+
     }
 
 add_action('wp_enqueue_scripts', 'enregistrer_scripts_et_styles_nathalie_mota');
@@ -155,3 +161,8 @@ function filter_photos_ajax()
 
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
+
+
+
+
+

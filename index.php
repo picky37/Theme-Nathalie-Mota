@@ -50,7 +50,7 @@
             ?>
 
             <!-- Filtre pour les catégories -->
-            <select id="categorie-filter">
+            <select id="categorie-filter" class="select2">
                 <option value="">CATÉGORIES</option>
                 <?php foreach ($categories as $categorie) : ?>
                     <option value="<?php echo esc_attr($categorie->slug); ?>">
@@ -60,7 +60,7 @@
             </select>
 
             <!-- Filtre pour les formats -->
-            <select id="taxonomy-filter">
+            <select id="taxonomy-filter" class="select2">
                 <option value="">FORMATS</option>
                 <?php foreach ($formats as $format) : ?>
                     <option value="<?php echo esc_attr($format->slug); ?>">
@@ -71,7 +71,7 @@
 
             <!-- Filtre | Trier par date -->
             <!-- <label for="date-sort"></label> -->
-            <select name="date-sort" id="date-sort">
+            <select name="date-sort" id="date-sort" class="select2">
                 <option value="ALL">TRIER PAR</option>
                 <option value="DESC">Du plus récent au plus ancien</option>
                 <option value="ASC">Du plus ancien au plus récent</option>
