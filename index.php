@@ -3,7 +3,7 @@
 <main class="wrap">
     <div class="randomHeader">
         <img class="titre_header_desktop"
-            src="/wp-content/themes/Theme-Nathalie-Mota/images/titreHeader.svg">
+            src="/wp-content/themes/Theme-Nathalie-Mota/images/titreHeader.svg" alt="Logo du header Nathalie Mota">
 
         <?php
         $related_args = [

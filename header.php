@@ -6,6 +6,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+    <meta name="description" content="<?php echo get_the_excerpt() ? esc_attr(get_the_excerpt()) : bloginfo('description'); ?>">
     <?php wp_head(); ?>
 </head>
 
