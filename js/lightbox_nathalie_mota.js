@@ -89,6 +89,7 @@
     // The last focused element before opening the overlay
     var lastFocus = null;
 
+    const baseUrl = window.location.origin; // Récupère l'URL de base du site
 
     // --------------------------
     // Create lightbox components
@@ -110,8 +111,13 @@
     prevButton.setAttribute("type", "button");
     prevButton.setAttribute("aria-label", "Previous");
 
+
+    // Construire dynamiquement l'URL de l'image
+    const imageUrl = `${baseUrl}/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg`;
+
     // Ajouter l'image à l'intérieur du bouton
-    prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
+    prevButton.innerHTML = `<img src="${imageUrl}" alt="Previous Arrow" />`;
+
 
     // Ajouter le bouton à l'overlay
     overlay.appendChild(prevButton);
@@ -263,8 +269,6 @@
         figcaption = null,
         figcaptionsIds = [];
 
-      console.log(galleryLength);
-
       document.querySelectorAll('.lightbox-content figure').forEach(e => e.remove())
 
       for (; i < galleryLength; ++i) {
@@ -315,8 +319,10 @@
         overlay.setAttribute("aria-labelledby", figuresIds.join(" "));
         overlay.setAttribute("aria-describedby", figcaptionsIds.join(" "));
       }
-      prevButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/previous_arrow.svg" alt="Previous Arrow" />';
-      nextButton.innerHTML = '<img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/next_arrow.svg" alt="Next Arrow"/>';
+      const themePath = "/wp-content/themes/Theme-Nathalie-Mota"; // Chemin du thème
+
+      prevButton.innerHTML = `<img src="${baseUrl}${themePath}/images/previous_arrow.svg" alt="Previous Arrow" />`;
+      nextButton.innerHTML = `<img src="${baseUrl}${themePath}/images/next_arrow.svg" alt="Next Arrow" />`;
       // Hide buttons if necessary
       if (!options.nav || galleryLength === 1 || (options.nav === "auto" && "ontouchstart" in window)) {
         // prevButton.style.display = "none";
@@ -557,8 +563,7 @@
         if (options.zoom && element.getElementsByTagName("img")[0]) {
           var lightboxZoom = document.createElement("div");
           var detailEye = document.createElement("div");
-          let baseUrl = window.location.origin; // Récupère l'URL de base (ex: http://localhost ou https://mon-site.com)
-          let themePath = "/wp-content/themes/Theme-Nathalie-Mota"; // Chemin vers ton thème
+          const themePath = "/wp-content/themes/Theme-Nathalie-Mota"; // Chemin du thème
 
           lightboxZoom.classList.add("lightbox-zoom");
           lightboxZoom.innerHTML = `<img src="${baseUrl}${themePath}/images/logo_fullscreen.svg" alt="Icône Plein Écran" class="fullscreen-icon" />`;

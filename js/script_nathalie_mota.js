@@ -74,9 +74,6 @@ function updateCaptions() {
     const postDataElements = document.querySelectorAll('.post-data');
     const figures = document.querySelectorAll("figure");
 
-    console.log(postDataElements, figures);
-
-
     postDataElements.forEach((postData, index) => {
         let figure = figures[index];
         if (figure) {
@@ -101,10 +98,6 @@ function updateCaptions() {
             figcaption.appendChild(categoryDiv);
 
             figure.appendChild(figcaption);
-
-            console.log("✅ Figcaption ajouté à :", figure, figcaption);
-
-
         }
     });
 }
@@ -240,5 +233,4 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       });
-    console.log("Slim Select initialisé !");
 });

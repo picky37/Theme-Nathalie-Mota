@@ -132,16 +132,17 @@ function filter_photos_ajax()
                 </div>
 
                 <div class="lightbox-zoom">
-                    <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/logo_fullscreen.svg"
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/logo_fullscreen.svg'); ?>"
                         alt="Icône Plein Écran"
                         class="fullscreen-icon" />
                 </div>
 
                 <div class="detail-eye">
-                    <img src="http://projet-11-nathalie-mota.local/wp-content/themes/Theme-Nathalie-Mota/images/Icon_eye.svg"
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/Icon_eye.svg'); ?>"
                         alt="Icône oeil détail"
                         class="eye-icon" />
                 </div>
+
             </a>
 
             <div class="post-data"
